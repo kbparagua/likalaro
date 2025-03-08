@@ -5,7 +5,7 @@ export class Randomizer {
     this.rng = seedrandom(seed);
   }
 
-  get() {
-    return this.rng();
+  get(min, max) {
+    return Math.floor(this.rng() * (max - min + 1)) + min;
   }
 }  

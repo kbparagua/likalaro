@@ -3,15 +3,61 @@
   import HelloWorld from './components/HelloWorld.vue'
   import { Randomizer } from './lib/Randomizer';
 
-  const r = new Randomizer('likalaro');
+  const seed = prompt('Enter seed');
+  const r = new Randomizer(seed);
 
-  const a = r.get();
-  const b = r.get();
-  const c = r.get();
+  const LOCATIONS = [
+    {
+      name: 'Airplane',
+      roles: [
+        'Pilot',
+        'Co-Pilot',
+        'Stewardess',
+        'First Class Passenger'
+      ]
+    },
+    {
+      name: 'Bank',
+      roles: [
+        'Manager',
+        'Security Guard',
+        'Teller',
+        'Customer'
+      ]
+    },
+    {
+      name: 'Casino',
+      roles: [
+        'Bouncer',
+        'Dealer',
+        'Gambler',
+        'Manager'
+      ]
+    },
+    {
+      name: 'Hospital',
+      roles: [
+        'Doctor',
+        'Nurse',
+        'Patient',
+        'Intern'
+      ]
+    },
+    {
+      name: 'Police Station',
+      roles: [
+        'Police',
+        'Detective',
+        'Lawyer',
+        'Journalist'
+      ]
+    }
+  ];
 
-  console.log(a);
-  console.log(b);
-  console.log(c);
+  const index = r.get(0, LOCATIONS.length - 1);
+  const location = LOCATIONS[index];
+
+  console.log("Location: ", location.name);
 </script>
 
 <template>
