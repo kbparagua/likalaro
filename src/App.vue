@@ -1,6 +1,17 @@
 <script setup>
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+  import { RouterLink, RouterView } from 'vue-router'
+  import HelloWorld from './components/HelloWorld.vue'
+  import { Randomizer } from './lib/Randomizer';
+
+  const r = new Randomizer('likalaro');
+
+  const a = r.get();
+  const b = r.get();
+  const c = r.get();
+
+  console.log(a);
+  console.log(b);
+  console.log(c);
 </script>
 
 <template>
