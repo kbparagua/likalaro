@@ -3,7 +3,8 @@
   import HelloWorld from './components/HelloWorld.vue'
   import { Randomizer } from './lib/Randomizer';
 
-  const seed = prompt('Enter seed');
+  const seed = Math.round((new Date()).getTime() * Math.random()).toString();
+  // const seed = prompt('Enter seed');
   const r = new Randomizer(seed);
 
   const LOCATIONS = [
