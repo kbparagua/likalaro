@@ -83,7 +83,7 @@
     <div class="wrapper">
       <nav>
         <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/spyfall">Spyfall</RouterLink>
+        <RouterLink to="/spyfall/new">Spyfall</RouterLink>
       </nav>
     </div>
   </header>
