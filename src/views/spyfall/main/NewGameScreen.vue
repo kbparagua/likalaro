@@ -1,6 +1,6 @@
 <script setup>
 
-import { watch, reactive } from 'vue';
+import { watch, reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { MIN_PLAYERS, MAX_PLAYERS } from '@/lib/SpyFall';
 import PlayerField from "./new_game_screen/PlayerField.vue";
@@ -30,6 +30,18 @@ watch(players, (newValue) => {
   console.log(players);
 })
 
+function isValidPlayer(player) {
+  return player.name.trim() != "";
+};
+
+const isValidGame = computed(() => {
+  for (let player of players) {
+    if (!isValidPlayer(player)) return false;
+  }
+
+  return true;
+});
+
 function buildLabel(playerIndex) {
   if (playerIndex == 0) return 'Host';
   return `Player ${playerIndex + 1}`;
@@ -57,6 +69,11 @@ function removePlayer(index) {
 };
 
 function create() {
+  if (!isValidGame) {
+    console.log("Invalid Game!");
+    return false;
+  }
+  
   const seed = Math.round((new Date()).getTime() * Math.random()).toString();
   router.push({ path: 'lobby', query: { players, seed } });
 }
@@ -74,5 +91,5 @@ function create() {
   </template>
 
   <button @click="addPlayer">Add Player</button>
-  <button @click="create">Create</button>
+  <button @click="create" :disabled="!isValidGame">Create</button>
 </template>
