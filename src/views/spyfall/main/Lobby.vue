@@ -1,7 +1,9 @@
 <script setup>
-  import { useRoute } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
 
+  const router = useRouter();
   const route = useRoute();
+
   const { players, seed } = route.query;
   const host = players.shift();
 
@@ -19,7 +21,10 @@
   }
 
   const joinUrls = players.map((player, i) => generateJoinUrl({ playerNumber: i + 2, name: player }));
-  console.log(joinUrls);
+
+  function start() {
+    router.push({ path: '/spyfall/game', query: { s: seed, n: 1, p: host } });
+  }
 </script>
 
 <template>
@@ -29,4 +34,6 @@
       {{ player }}: {{ joinUrls[i] }}
     </li>
   </ul>
+
+  <button @click="start">Start</button>
 </template>
