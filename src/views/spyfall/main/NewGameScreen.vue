@@ -7,16 +7,11 @@ const router = useRouter();
 const players = [];
 const setPlayer = (index, name) => {
   players[index] = name;
-  console.log(players);
 }
 
-
 function create() {
-  console.log("create game");
-  router.push({ path: 'lobby', query: { players } });
-  
-
-  
+  const seed = Math.round((new Date()).getTime() * Math.random()).toString();
+  router.push({ path: 'lobby', query: { players, seed } });
 }
 
 </script>

@@ -2,9 +2,8 @@
   import { useRoute } from 'vue-router';
 
   const route = useRoute();
-  const players = route.query.players;
+  const { players, seed } = route.query;
   const host = players.shift();
-  const seed = Math.round((new Date()).getTime() * Math.random()).toString();
 
   function generateJoinUrl({ playerNumber, name }) {
     const data = {
