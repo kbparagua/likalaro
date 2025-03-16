@@ -83,7 +83,8 @@ function create() {
   }
   
   const seed = Math.round((new Date()).getTime() * Math.random()).toString();
-  router.push({ path: 'lobby', query: { players, seed } });
+  const playerNames = players.map((p) => p.name);
+  router.push({ path: 'lobby', query: { players: playerNames, seed } });
 }
 </script>
 
