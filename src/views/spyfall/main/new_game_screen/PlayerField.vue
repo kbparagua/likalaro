@@ -11,8 +11,25 @@ watch(value, (newValue) => {
 </script>
 
 <template>
-  <div>
-    <span>{{ label }}</span>
+  <div class="player-field">
+    <span class="label">{{ label }}</span>
     <input type="text" v-model="value" />
   </div>
 </template>
+
+<style scoped>
+  .player-field {
+    display: flex;
+    margin-bottom: 12px;
+  }
+
+  .label {
+    width: 100px;
+    font-size: 16px;
+  }
+
+  input {
+    max-width: 80%;
+    font-size: 16px;
+  }
+</style>

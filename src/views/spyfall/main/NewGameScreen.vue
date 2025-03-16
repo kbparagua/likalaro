@@ -18,7 +18,7 @@ function create() {
 
 <template>
   <div>Spyfall</div>
-  <PlayerField label="Your name" @change="(v) => setPlayer(0, v)"></PlayerField>
+  <PlayerField label="Host" @change="(v) => setPlayer(0, v)"></PlayerField>
   <PlayerField label="Player 2" @change="(v) => setPlayer(1, v)"></PlayerField>
   <PlayerField label="Player 3" @change="(v) => setPlayer(2, v)"></PlayerField>
   <PlayerField label="Player 4" @change="(v) => setPlayer(3, v)"></PlayerField>
