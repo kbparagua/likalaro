@@ -8,12 +8,12 @@
   function generateJoinUrl({ playerNumber, name }) {
     const data = {
       s: seed,
-      m: playerNumber,
+      n: playerNumber,
       p: name
     };
 
     const params = (new URLSearchParams(data)).toString();
-    const url = window.location.href.split('?')[0];
+    const url = window.location.href.split('?')[0].replace("lobby", "game");
 
     return `${url}?${params}`;
   }
