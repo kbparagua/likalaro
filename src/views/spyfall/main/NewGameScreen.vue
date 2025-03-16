@@ -47,8 +47,7 @@ const isValidGame = computed(() => {
     verifiedPlayerNames[canonicalPlayerName] = true;
   }
 
-
-  return true;
+  return players.length >= MIN_PLAYERS && players.length <= MAX_PLAYERS;
 });
 
 function buildLabel(playerIndex) {
