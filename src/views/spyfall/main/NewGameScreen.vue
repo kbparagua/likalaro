@@ -1,18 +1,23 @@
 <script setup>
 
-import { reactive } from 'vue';
+import { watch, reactive } from 'vue';
 import { useRouter } from 'vue-router';
 import { MIN_PLAYERS, MAX_PLAYERS } from '@/lib/SpyFall';
 import PlayerField from "./new_game_screen/PlayerField.vue";
 
 const router = useRouter();
 
+const generatePlayerId = (function() {
+  let currentAvailableId = 0;
+  return () => currentAvailableId++;
+})();
+
 function buildInitalPlayers() {
   const list = [];
   let i = 0;
 
   while (i < MIN_PLAYERS) {
-    list.push({ name: '' });
+    list.push({ id: generatePlayerId(), name: '' });
     i++;
   }
 
@@ -21,13 +26,17 @@ function buildInitalPlayers() {
 
 const players = reactive(buildInitalPlayers());
 
+watch(players, (newValue) => {
+  console.log(players);
+})
+
 function buildLabel(playerIndex) {
   if (playerIndex == 0) return 'Host';
   return `Player ${playerIndex + 1}`;
 }
 
 function setPlayer(index, name) {
-  players[index] = name;
+  players[index].name = name; 
 }
 
 function addPlayer() {
@@ -36,8 +45,16 @@ function addPlayer() {
     return false;
   }
 
-  players.push({ name: '' });
+  players.push({ id: generatePlayerId(), name: '' });
 }
+
+function isRemoveable(playerIndex) {
+  return playerIndex > 0;
+}
+
+function removePlayer(index) {
+  players.splice(index, 1);
+};
 
 function create() {
   const seed = Math.round((new Date()).getTime() * Math.random()).toString();
@@ -47,8 +64,13 @@ function create() {
 
 <template>
   <div>Spyfall</div>
-  <template v-for="(player, i) in players">
-    <PlayerField :label="buildLabel(i)" @change="(value) => setPlayer(i, value)"></PlayerField>
+  <template v-for="(player, i) in players" :key="player.id">
+    <PlayerField
+      :label="buildLabel(i)"
+      :removeable="isRemoveable(i)"
+      @change="(value) => setPlayer(i, value)"
+      @remove="removePlayer(i)">
+    </PlayerField>
   </template>
 
   <button @click="addPlayer">Add Player</button>
