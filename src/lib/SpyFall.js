@@ -48,6 +48,9 @@ const LOCATIONS = [
   }
 ];
 
+export const MIN_PLAYERS = 3;
+export const MAX_PLAYERS = 8;
+
 export default class {
   constructor({ seed, playerNumber }) {
     this.randomizer = new Randomizer(seed);
