@@ -35,9 +35,18 @@ function isValidPlayer(player) {
 };
 
 const isValidGame = computed(() => {
+  const verifiedPlayerNames = {};
+
   for (let player of players) {
     if (!isValidPlayer(player)) return false;
+
+    // If player name is already verified then this is a duplicate name.
+    let canonicalPlayerName = player.name.toLowerCase();
+    if (verifiedPlayerNames[canonicalPlayerName]) return false;
+
+    verifiedPlayerNames[canonicalPlayerName] = true;
   }
+
 
   return true;
 });
