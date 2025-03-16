@@ -3,19 +3,20 @@
   import SpyFall from '@/lib/SpyFall';
 
   const route = useRoute();
-  const player = route.query.p;
-  const seed = route.query.s;
-  const playerNumber = route.query.n;
+  const seed = route.query.seed;
+  const player = route.query.player;
+  const index = route.query.index;
+  const numberOfPlayers = route.query.numberOfPlayers;
 
-  const spyfall = new SpyFall({ seed, playerNumber });
-  const location = spyfall.location();
-  const role = spyfall.role();
+  const spyfall = new SpyFall({ seed, numberOfPlayers });
+  const location = spyfall.location(index);
+  const role = spyfall.role(index);
 </script>
 
 <template>
   <div>
     <h1>{{ player }}</h1>
-    <div>Location: {{ location.name }}</div>
+    <div>Location: {{ location }}</div>
     <div>Role: {{ role  }}</div>
   </div>
 </template>

@@ -1,3 +1,4 @@
+import { ssrModuleExportsKey } from "vite/module-runner";
 import { Randomizer } from "./Randomizer";
 
 const LOCATIONS = [
@@ -48,30 +49,47 @@ const LOCATIONS = [
   }
 ];
 
+const SPY_LOCATION = 'Unknown';
+const SPY_ROLE = 'Spy';
+
 export const MIN_PLAYERS = 3;
 export const MAX_PLAYERS = 8;
 
 export default class {
-  constructor({ seed, playerNumber }) {
+  constructor({ seed, numberOfPlayers }) {
     this.randomizer = new Randomizer(seed);
-    this.playerNumber = playerNumber;
+    this.numberOfPlayers = numberOfPlayers;
   }
 
-  location() {
-    if (this._location) return this._location;
+  location(index) {
+    return this._location ||= this.#isSpy(index) ? SPY_LOCATION : this.#locationData().name;
+  }
+
+  role(playerIndex) {
+    return this.#availableRoles()[playerIndex];
+  }
+
+  #isSpy(index) {
+    return this.role(index) == SPY_ROLE;
+  }
+
+  #availableRoles() {
+    if (this._availableRoles) return this._availableRoles;
+
+    const allRoles = this.randomizer.shuffle(this.#locationData().roles);
+    const regularRoles = allRoles.slice(0, this.numberOfPlayers - 1);
+    
+    this._availableRoles = this.randomizer.shuffle(regularRoles.concat([SPY_ROLE]));
+
+    return this._availableRoles;
+  }
+
+  #locationData() {
+    if (this._locationData) return this._locationData;
 
     const index = this.randomizer.get(0, LOCATIONS.length - 1);
-    this._location = LOCATIONS[index];
+    this._locationData = LOCATIONS[index];
 
-    return this._location;
-  }
-
-  role() {
-    if (this._role) return this._role;
-
-    const shuffled = this.randomizer.shuffle(this.location().roles);
-    this._role = shuffled[this.playerNumber - 1];
-
-    return this._role;
+    return this._locationData;
   }
 }

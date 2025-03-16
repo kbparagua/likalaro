@@ -6,12 +6,14 @@
 
   const { players, seed } = route.query;
   const host = players.shift();
+  const numberOfPlayers = players.length + 1;
 
-  function generateJoinUrl({ playerNumber, name }) {
+  function generateJoinUrl({ index, player }) {
     const data = {
-      s: seed,
-      n: playerNumber,
-      p: name
+      seed,
+      index,
+      player,
+      numberOfPlayers
     };
 
     const params = (new URLSearchParams(data)).toString();
@@ -20,10 +22,10 @@
     return `${url}?${params}`;
   }
 
-  const joinUrls = players.map((player, i) => generateJoinUrl({ playerNumber: i + 2, name: player }));
+  const joinUrls = players.map((player, i) => generateJoinUrl({ index: i + 1, player }));
 
   function start() {
-    router.push({ path: '/spyfall/game', query: { s: seed, n: 1, p: host } });
+    router.push({ path: '/spyfall/game', query: { seed, numberOfPlayers, index: 0, player: host} });
   }
 </script>
 
