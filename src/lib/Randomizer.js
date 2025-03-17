@@ -3,6 +3,7 @@ import seedrandom from 'seedrandom'
 export class Randomizer {
   constructor(seed) {
     this.rng = seedrandom(seed);
+    this.nextSeed = this.#generateNextSeed();
   }
 
   get(min, max) {
@@ -24,5 +25,9 @@ export class Randomizer {
     }
 
     return shuffled;
+  }
+
+  #generateNextSeed() {
+    return this.rng().toString().split('.')[1];
   }
 }  

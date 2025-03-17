@@ -1,7 +1,8 @@
 <script setup>
-  import { useRoute } from 'vue-router';
+  import { useRoute, useRouter } from 'vue-router';
   import SpyFall from '@/lib/SpyFall';
 
+  const router = useRouter();
   const route = useRoute();
   const seed = route.query.seed;
   const player = route.query.player;
@@ -11,6 +12,11 @@
   const spyfall = new SpyFall({ seed, numberOfPlayers });
   const location = spyfall.location(index);
   const role = spyfall.role(index);
+
+  function nextGame() {
+    const nextSeed = spyfall.nextSeed();
+    router.push({ path: '/spyfall/game', query: { seed: nextSeed, numberOfPlayers, index, player } });
+  }
 </script>
 
 <template>
@@ -18,5 +24,6 @@
     <h1>{{ player }}</h1>
     <div>Location: {{ location }}</div>
     <div>Role: {{ role  }}</div>
+    <a href="#nextGame" @click.prevent="nextGame">Next Game</a>
   </div>
 </template>

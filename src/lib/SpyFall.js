@@ -61,6 +61,10 @@ export default class {
     this.numberOfPlayers = numberOfPlayers;
   }
 
+  nextSeed() {
+    return this.randomizer.nextSeed;
+  }
+
   location(index) {
     return this._location ||= this.#isSpy(index) ? SPY_LOCATION : this.#locationData().name;
   }
