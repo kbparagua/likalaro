@@ -7,6 +7,7 @@
   const seed = route.query.seed;
   const player = route.query.player;
   const index = route.query.index;
+  const gameNumber = parseInt(route.query.gameNumber || 1);
   const numberOfPlayers = route.query.numberOfPlayers;
 
   const spyfall = new SpyFall({ seed, numberOfPlayers });
@@ -15,7 +16,16 @@
 
   function nextGame() {
     const nextSeed = spyfall.nextSeed();
-    router.push({ path: '/spyfall/game', query: { seed: nextSeed, numberOfPlayers, index, player } });
+    router.push({
+      path: '/spyfall/game',
+      query: {
+        seed: nextSeed,
+        gameNumber: gameNumber + 1,
+        numberOfPlayers,
+        index,
+        player
+      }
+    });
   }
 </script>
 
@@ -24,6 +34,7 @@
     <h1>{{ player }}</h1>
     <div>Location: {{ location }}</div>
     <div>Role: {{ role  }}</div>
+    <div>Game: #{{ gameNumber }}</div>
     <a href="#nextGame" @click.prevent="nextGame">Next Game</a>
   </div>
 </template>
