@@ -10,6 +10,7 @@
   const index = route.query.index;
   const gameNumber = parseInt(route.query.gameNumber || 1);
   const numberOfPlayers = route.query.numberOfPlayers;
+  const isHost = index == 0;
 
   const spyfall = new SpyFall({ seed, numberOfPlayers });
   const location = spyfall.location(index);
@@ -37,7 +38,7 @@
     <div>Role: {{ role  }}</div>
     <div>Game: #{{ gameNumber }}</div>
 
-    <Timer></Timer>
+    <Timer v-if="isHost"></Timer>
     <a href="#nextGame" @click.prevent="nextGame">Next Game</a>
   </div>
 </template>

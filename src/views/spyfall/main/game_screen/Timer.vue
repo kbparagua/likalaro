@@ -1,5 +1,5 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+  import { ref, computed } from 'vue';
 
   const DEFAULT_MINUTES = 8;
   const TICK_INTERVAL_MS = 1000;
@@ -41,8 +41,6 @@ import { ref, onMounted, computed } from 'vue';
     secondsDisplay.value = formatSeconds();
     minutesDisplay.value = minutes.toString();
   }
-
-  onMounted(() => startTick());
 </script>
 
 <template>
