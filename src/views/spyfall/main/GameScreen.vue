@@ -1,6 +1,7 @@
 <script setup>
   import { useRoute, useRouter } from 'vue-router';
   import SpyFall from '@/lib/SpyFall';
+  import Timer from './game_screen/Timer.vue';
 
   const router = useRouter();
   const route = useRoute();
@@ -35,6 +36,8 @@
     <div>Location: {{ location }}</div>
     <div>Role: {{ role  }}</div>
     <div>Game: #{{ gameNumber }}</div>
+
+    <Timer></Timer>
     <a href="#nextGame" @click.prevent="nextGame">Next Game</a>
   </div>
 </template>
