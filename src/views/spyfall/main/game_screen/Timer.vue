@@ -1,7 +1,7 @@
 <script setup>
   import { ref, computed } from 'vue';
 
-  const DEFAULT_MINUTES = 2;
+  const DEFAULT_MINUTES = 8;
   const TICK_INTERVAL_MS = 1000;
 
   const intervalId = ref(null);
@@ -10,7 +10,13 @@
   const secondsDisplay = ref(formatSeconds());
   const minutesDisplay = ref(minutes.toString());
   const isTimeUp = ref(false);
-  
+ 
+  function reset() {
+    seconds = 0;
+    minutes = DEFAULT_MINUTES;
+    isTimeUp.value = false;
+    startTick();
+  }
 
   function formatSeconds() {
     return (seconds < 10) ? `0${seconds.toString()}` : seconds.toString();
@@ -55,5 +61,6 @@
   <div v-if="isTimeUp">Time is up!</div>
   <div v-else>{{ minutesDisplay }}:{{ secondsDisplay }}</div>
 
-  <a href="#toggleTick" @click.prevent="toggleTick" v-if="!isTimeUp">{{ toggleAction }}</a>
+  <a href="#reset" v-if="isTimeUp" @click.prevent="reset">Reset</a>
+  <a href="#toggle" v-else @click.prevent="toggleTick">{{ toggleAction }}</a>
 </template>
