@@ -32,13 +32,51 @@
 </script>
 
 <template>
-  <div>
-    <h1>{{ player }}</h1>
-    <div>Location: {{ location }}</div>
-    <div>Role: {{ role  }}</div>
-    <div>Game: #{{ gameNumber }}</div>
+  <div class="screen">
+    <div class="top-bar">
+      <span class="player">{{ player }}</span>
+      <span class="round">#{{ gameNumber }}</span>
+    </div>
+
+    <div>
+      <div class="location">{{ location }}</div>
+      <div class="role">{{ role  }}</div>
+    </div>
 
     <Timer v-if="isHost"></Timer>
     <a href="#nextGame" @click.prevent="nextGame">Next Game</a>
   </div>
 </template>
+
+<style scoped>
+  .screen {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+  }
+
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    background-color: #8e44ad;
+    margin-top: -24px;
+    margin-left: -24px;
+    margin-right: -24px;
+    padding: 0.5rem;
+  }
+
+  .location {
+    font-size: 4rem;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .role {
+    font-size: 1rem;
+    text-align: center;
+    background-color: #2f3640; 
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+</style>

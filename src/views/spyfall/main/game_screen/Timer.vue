@@ -40,7 +40,7 @@
     stopTick();
   }
 
-  const toggleAction = computed(() => (intervalId.value ? 'Pause' : 'Resume' ));
+  const toggleAction = computed(() => (intervalId.value ? 'pause' : 'start' ));
 
   function tick() {
     seconds--;
@@ -58,9 +58,23 @@
 </script>
 
 <template>
-  <div v-if="isTimeUp">Time is up!</div>
-  <div v-else>{{ minutesDisplay }}:{{ secondsDisplay }}</div>
+  <div class="timer">
+    <div v-if="isTimeUp">Time is up!</div>
+    <div class="time" v-else>{{ minutesDisplay }}:{{ secondsDisplay }}</div>
 
-  <a href="#reset" v-if="isTimeUp" @click.prevent="reset">Reset</a>
-  <a href="#toggle" v-else @click.prevent="toggleTick">{{ toggleAction }}</a>
+    <a href="#reset" v-if="isTimeUp" @click.prevent="reset">Reset</a>
+    <a href="#toggle" v-else @click.prevent="toggleTick">{{ toggleAction }}</a>
+  </div>
 </template>
+
+<style scoped>
+  .timer {
+    text-align: center;
+  }
+
+  .time {
+    font-size: 2rem;
+    font-family: 'Courier New', Courier, monospace;
+    color: #e74c3c; 
+  }
+</style>

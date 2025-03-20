@@ -6,7 +6,7 @@
 <template>
   <header>
     <div class="wrapper">
-      <nav>
+      <nav v-if="$route.path == '/'">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/spyfall/new">Spyfall</RouterLink>
       </nav>
