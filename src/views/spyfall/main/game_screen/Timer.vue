@@ -64,6 +64,7 @@
 
     <a href="#reset" v-if="isTimeUp" @click.prevent="reset">Reset</a>
     <a href="#toggle" v-else @click.prevent="toggleTick">{{ toggleAction }}</a>
+      {{ player }}: {{ joinUrls[i] }} <button class="copy-to-clipboard" :data-clipboard-text="joinUrls[i]">Copy</button>
   </div>
 </template>
 
