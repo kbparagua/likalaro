@@ -26,9 +26,26 @@
 </script>
 
 <template>
-  <div class="player-name">{{ name }}</div>
-  <div>
-    <img :src="qr"></img>
+  <div class="card">
+    <div class="player-name">{{ name }}</div>
+    <div>
+      <img class="qr-code" :src="qr"></img>
+    </div>
+    <button class="copy-to-clipboard" :data-clipboard-text="url">Send link</button>
   </div>
-  <button class="copy-to-clipboard" :data-clipboard-text="url">Send link</button>
 </template>
+
+<style scoped>
+  .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    width: 100vw;
+    padding: 12px;
+  }
+
+  .qr-code {
+    width: 90vw;
+  }
+</style>
