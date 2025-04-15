@@ -17,25 +17,48 @@ watch(value, (newValue) => {
 
 <template>
   <div class="player-field">
-    <span class="label">{{ label }}</span>
+    <span class="label">
+      <i class="fi fi-ss-user"></i>
+      <span class="text">{{ label }}</span>
+    </span>
     <input type="text" :name="label" v-model="value" />
-    <a href="#remove" v-if="removeable" @click.prevent="$emit('remove')">remove</a>
+    <a href="#remove" class="remove" v-if="removeable" @click.prevent="$emit('remove')">
+      <i class="fi fi-rr-cross-circle"></i>
+    </a>
   </div>
 </template>
 
 <style scoped>
   .player-field {
     display: flex;
+    align-items: center;
+    gap: 4px;
     margin-bottom: 12px;
+    max-width: 100%;
   }
 
   .label {
-    width: 100px;
-    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 2px;
+
+    .fi {
+      font-size: 24px;
+      color: #2980b9;
+    }
+
+    .text {
+      font-size: 12px;
+      width: 50px;
+    }
   }
 
   input {
     max-width: 80%;
-    font-size: 16px;
+  }
+
+  .remove {
+    color: #e74c3c;
+    padding: 0.25rem;
   }
 </style>

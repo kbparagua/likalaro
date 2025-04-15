@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@flaticon/flaticon-uicons": "^3.3.1",
     "clipboard": "^2.0.11",
     "normalize.css": "^8.0.1",
     "qrcode": "^1.5.4",

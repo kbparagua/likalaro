@@ -52,7 +52,7 @@ const isValidGame = computed(() => {
 
 function buildLabel(playerIndex) {
   if (playerIndex == 0) return 'Host';
-  return `Player ${playerIndex + 1}`;
+  return `${playerIndex + 1} xx`;
 }
 
 function setPlayer(index, name) {

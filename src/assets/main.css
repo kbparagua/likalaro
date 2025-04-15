@@ -30,3 +30,8 @@ a {
     color: #9b59b6; 
   }
 }
+
+/* Patch to align icons vertically */
+i.fi::before {
+  display: block;
+}
