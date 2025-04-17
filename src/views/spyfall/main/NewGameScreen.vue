@@ -89,7 +89,6 @@ function create() {
 </script>
 
 <template>
-  <div>Spyfall</div>
   <template v-for="(player, i) in players" :key="player.id">
     <PlayerField
       :label="buildLabel(i)"
