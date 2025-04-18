@@ -17,48 +17,44 @@ watch(value, (newValue) => {
 
 <template>
   <div class="player-field">
-    <span class="label">
-      <i class="fi fi-ss-user"></i>
-      <span class="text">{{ label }}</span>
-    </span>
-    <input type="text" :name="label" v-model="value" />
-    <a href="#remove" class="remove" v-if="removeable" @click.prevent="$emit('remove')">
-      <i class="fi fi-rr-cross-circle"></i>
+    <i class="fi fi-ss-user"></i>
+    <input type="text" size="1" :placeholder="label" :name="label" v-model="value" />
+    <a href="#remove" class="remove" @click.prevent="$emit('remove')">
+      <i class="fi fi-rr-trash"></i>
     </a>
   </div>
 </template>
 
 <style scoped>
   .player-field {
+    position: relative;
     display: flex;
     align-items: center;
-    gap: 2px;
     margin-bottom: 12px;
-    width: 100%;
-    flex-wrap: wrap;
-  }
-
-  .label {
-    display: flex;
-    align-items: center;
-    gap: 2px;
-
-    .fi {
-      font-size: 24px;
-      color: #2980b9;
-    }
-
-    .text {
-      font-size: 12px;
-      /* width: 50px; */
-    }
-  }
+    background-color: #34495e;
+    padding: 1.5rem 1rem;
+    border-radius: 0.5rem;
+    gap: 1rem;
 
   input {
+    border-radius: 0.5rem;
+    padding: 0.75rem 0.5rem;
+    border: solid 1px transparent;
+    font-size: 1.25rem;
+    background-color: #4e6280;
+    color: white;
+    min-width: 70%;
+    flex-grow: 2;
+
+    &:focus {
+      outline: none;
+      border: solid 1px #2980b9;
+    }
   }
 
   .remove {
     color: #e74c3c;
-    padding: 0.25rem;
+    flex-basis: content;
   }
+}
 </style>

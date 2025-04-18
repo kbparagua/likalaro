@@ -5,7 +5,8 @@
 
   onMounted(() => {
     setTimeout(() => {
-      window.scrollTo({
+      console.log("scrolling...");
+      document.body.scrollTo({
         top: document.body.scrollHeight,
         behavior: "smooth"
       });

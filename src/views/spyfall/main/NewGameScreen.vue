@@ -51,8 +51,7 @@ const isValidGame = computed(() => {
 });
 
 function buildLabel(playerIndex) {
-  if (playerIndex == 0) return 'Host';
-  return `${playerIndex + 1} xx`;
+  return `${playerIndex + 2}`;
 }
 
 function setPlayer(index, name) {
@@ -89,15 +88,65 @@ function create() {
 </script>
 
 <template>
-  <template v-for="(player, i) in players" :key="player.id">
-    <PlayerField
-      :label="buildLabel(i)"
-      :removeable="isRemoveable(i)"
-      @change="(value) => setPlayer(i, value)"
-      @remove="removePlayer(i)">
-    </PlayerField>
-  </template>
+  <div class="title">
+    <i class="fi fi-sr-users-alt"></i>
+    <h1>Players</h1>
+  </div>
 
-  <button @click="addPlayer">Add Player</button>
-  <button @click="create" :disabled="!isValidGame">Create</button>
+  <div class="players">
+    <template v-for="(player, i) in players" :key="player.id">
+      <PlayerField
+        :label="buildLabel(i)"
+        :removeable="isRemoveable(i)"
+        @change="(value) => setPlayer(i, value)"
+        @remove="removePlayer(i)">
+      </PlayerField>
+    </template>
+  </div>
+
+  <a href="#" class="add-player" @click.prevent="addPlayer">
+    <i class="fi fi-tr-add"></i>
+  </a>
+  <a href="#" class="create-btn" @click.prevent="create" :disabled="!isValidGame">
+    <i class="fi fi-ss-angle-circle-right"></i>
+  </a>
 </template>
+
+<style scoped>
+  .title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+
+    .fi {
+      font-size: 4rem;
+      color: #27ae60;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin: 0;
+      text-transform: uppercase;
+    }
+  }
+
+  .players {
+    margin-bottom: 2rem;
+  }
+
+  .add-player {
+    text-align: center;
+    font-size: 3rem;
+    color: white;
+  }
+
+  .create-btn {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    font-size: 3rem;
+  }
+</style>
