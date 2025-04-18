@@ -1,6 +1,16 @@
 <script setup>
+  import { onMounted } from 'vue';
   import { RouterLink, RouterView } from 'vue-router'
   import 'normalize.css'
+
+  onMounted(() => {
+    setTimeout(() => {
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+      });
+    }, 1000);
+  });
 </script>
 
 <template>
