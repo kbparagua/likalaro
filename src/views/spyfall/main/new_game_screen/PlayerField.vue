@@ -32,9 +32,10 @@ watch(value, (newValue) => {
   .player-field {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 2px;
     margin-bottom: 12px;
-    max-width: 100%;
+    width: 100%;
+    flex-wrap: wrap;
   }
 
   .label {
@@ -49,12 +50,11 @@ watch(value, (newValue) => {
 
     .text {
       font-size: 12px;
-      width: 50px;
+      /* width: 50px; */
     }
   }
 
   input {
-    max-width: 80%;
   }
 
   .remove {
