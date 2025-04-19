@@ -4,6 +4,7 @@ import { watch, reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { MIN_PLAYERS, MAX_PLAYERS } from '@/lib/SpyFall';
 import PlayerField from "./new_game_screen/PlayerField.vue";
+import Action from '@/views/core/Action.vue';
 import Content from './Content.vue';
 
 const router = useRouter();
@@ -113,9 +114,7 @@ function create() {
     </template>
 
     <template v-slot:actions>
-      <a href="#" class="create-btn" @click.prevent="create" :disabled="!isValidGame">
-        <i class="fi fi-ss-angle-circle-right"></i>
-      </a>
+      <Action icon="forward" :disabled="!isValidGame" @click="create"></Action>
     </template>
   </Content>
 </template>

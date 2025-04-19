@@ -30,8 +30,10 @@
     }
 
     .actions {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
       border-top: solid 1px #34495e;
-      padding: 2rem;
       flex-grow: 1;
     }
   }

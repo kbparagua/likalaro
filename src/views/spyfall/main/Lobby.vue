@@ -2,6 +2,8 @@
   import { useTemplateRef } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import PlayerCard from './lobby/PlayerCard.vue';
+  import Content from './Content.vue';
+  import Action from '@/views/core/Action.vue';
 
   const router = useRouter();
   const route = useRoute();
@@ -30,7 +32,8 @@
   const joinUrls = players.map((player, i) => generateJoinUrl({ index: i + 1, player }));
 
   function start() {
-    router.push({ path: '/spyfall/game', query: { seed, numberOfPlayers, index: 0, player: host} });
+    console.log("Start");
+    // router.push({ path: '/spyfall/game', query: { seed, numberOfPlayers, index: 0, player: host} });
   }
 
   function prevPlayer() {
@@ -51,18 +54,26 @@
 </script>
 
 <template>
-  <div>Host: {{  host  }}</div>
-  <div class="player-list-container" ref="player-list">
-    <ul class="player-list">
-      <li class="player-card-container" v-for="(player, i) in players">
-        <PlayerCard :url="joinUrls[i]" :name="player"></PlayerCard>
-      </li>
-    </ul>
-  </div>
+  <Content>
+    <template v-slot:main>
+      <div>Host: {{  host  }}</div>
+      <div class="player-list-container" ref="player-list">
+        <ul class="player-list">
+          <li class="player-card-container" v-for="(player, i) in players">
+            <PlayerCard :url="joinUrls[i]" :name="player"></PlayerCard>
+          </li>
+        </ul>
+      </div>
 
-  <button @click="prevPlayer">Previous Player</button>
-  <button @click="nextPlayer">Next Player</button>
-  <button @click="start">Start</button>
+      <button @click="prevPlayer">Previous Player</button>
+      <button @click="nextPlayer">Next Player</button>
+    </template>
+
+    <template v-slot:actions>
+      <Action icon="back" :back="true"></Action>
+      <Action icon="forward" @click="start"></Action>
+    </template>
+  </Content>
 </template>
 
 <style scoped>
