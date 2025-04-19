@@ -23,9 +23,11 @@ watch(value, (newValue) => {
 
     <input type="text" size="1" :placeholder="label" :name="label" v-model="value" />
 
-    <a href="#remove" class="remove" @click.prevent="$emit('remove')">
-      <i class="fi fi-rr-trash"></i>
-    </a>
+    <span class="remove-container">
+      <a href="#remove" class="remove" v-if="removeable" @click.prevent="$emit('remove')">
+        <i class="fi fi-rr-trash"></i>
+      </a>
+    </span>
   </div>
 </template>
 
@@ -60,10 +62,15 @@ watch(value, (newValue) => {
       }
     }
 
-    .remove {
-      color: #e74c3c;
-      flex-basis: content;
-      font-size: 2rem;
+    .remove-container {
+      width: 3rem;
+      text-align: center;
+
+      .remove {
+        color: #e74c3c;
+        flex-basis: content;
+        font-size: 2rem;
+      }
     }
   }
 </style>

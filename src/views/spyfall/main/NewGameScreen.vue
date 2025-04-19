@@ -52,7 +52,7 @@ const isValidGame = computed(() => {
 });
 
 function buildLabel(playerIndex) {
-  return `${playerIndex + 2}`;
+  return `Player ${playerIndex + 1}`;
 }
 
 function setPlayer(index, name) {
@@ -77,7 +77,7 @@ function removePlayer(index) {
 };
 
 function create() {
-  if (!isValidGame) {
+  if (!isValidGame.value) {
     console.log("Invalid Game!");
     return false;
   }
