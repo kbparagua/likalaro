@@ -114,7 +114,7 @@ function create() {
     </template>
 
     <template v-slot:actions>
-      <Action icon="forward" :disabled="!isValidGame" @click="create"></Action>
+      <Action icon="ok" :disabled="!isValidGame" @click="create"></Action>
     </template>
   </Content>
 </template>

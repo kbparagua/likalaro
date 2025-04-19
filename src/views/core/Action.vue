@@ -6,6 +6,7 @@
   const ICONS_CSS_CLASS_MAP = {
     forward: "fi-ss-angle-circle-right",
     back: "fi-ss-angle-circle-left",
+    ok: "fi-ss-check-circle",
   };
 
   const emit = defineEmits(['click']);

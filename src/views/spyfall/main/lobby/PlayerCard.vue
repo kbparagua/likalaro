@@ -31,7 +31,12 @@
     <div>
       <img class="qr-code" :src="qr"></img>
     </div>
-    <button class="copy-to-clipboard" :data-clipboard-text="url">Send link</button>
+
+    <div>or </div>
+    <div class="copy-to-clipboard" :data-clipboard-text="url">
+      <i class="fi fi-rs-paper-plane"></i>
+      <span>share link</span>
+    </div>
   </div>
 </template>
 

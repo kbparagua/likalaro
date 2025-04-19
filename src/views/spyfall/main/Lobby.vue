@@ -1,5 +1,5 @@
 <script setup>
-  import { useTemplateRef } from 'vue';
+  import { useTemplateRef, ref, watch } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import PlayerCard from './lobby/PlayerCard.vue';
   import Content from './Content.vue';
@@ -11,7 +11,7 @@
   const { players, seed } = route.query;
   const host = players.shift();
   const numberOfPlayers = players.length + 1;
-  let currentShownPlayerIndex = 0;
+  const currentShownPlayerIndex = ref(0);
 
   const playerList = useTemplateRef("player-list");
 
@@ -32,31 +32,38 @@
   const joinUrls = players.map((player, i) => generateJoinUrl({ index: i + 1, player }));
 
   function start() {
-    console.log("Start");
-    // router.push({ path: '/spyfall/game', query: { seed, numberOfPlayers, index: 0, player: host} });
+    router.push({ path: '/spyfall/game', query: { seed, numberOfPlayers, index: 0, player: host} });
   }
 
   function prevPlayer() {
-    currentShownPlayerIndex--;
-    if (currentShownPlayerIndex === -1) return currentShownPlayerIndex++;
+    currentShownPlayerIndex.value--;
+    if (currentShownPlayerIndex.value === -1) return currentShownPlayerIndex.value++;
 
-    const scrollLeft = currentShownPlayerIndex * window.innerWidth;
+    const scrollLeft = currentShownPlayerIndex.value * window.innerWidth;
     playerList.value.scroll({ top: 0, left: scrollLeft, behavior: 'smooth' });
   }
   
   function nextPlayer() {
-    currentShownPlayerIndex++;
-    if (currentShownPlayerIndex === players.length) return currentShownPlayerIndex--;
+    currentShownPlayerIndex.value++;
+    if (currentShownPlayerIndex.value === players.length) return currentShownPlayerIndex.value--;
 
-    const scrollLeft = currentShownPlayerIndex * window.innerWidth;
+    const scrollLeft = currentShownPlayerIndex.value * window.innerWidth;
     playerList.value.scroll({ top: 0, left: scrollLeft, behavior: 'smooth' });
+  }
+
+  function isReady() {
+    const ready = (currentShownPlayerIndex.value + 1) == (players.length);
+    console.log("players.length: ", players.length);
+    console.log('currentPlayerIndex: ', currentShownPlayerIndex.value);
+    console.log('ready ', ready);
+    return ready;
   }
 </script>
 
 <template>
   <Content>
     <template v-slot:main>
-      <div>Host: {{  host  }}</div>
+      <div>Scan to join</div>
       <div class="player-list-container" ref="player-list">
         <ul class="player-list">
           <li class="player-card-container" v-for="(player, i) in players">
@@ -65,13 +72,14 @@
         </ul>
       </div>
 
-      <button @click="prevPlayer">Previous Player</button>
-      <button @click="nextPlayer">Next Player</button>
+      <div>Host: {{  host  }}</div>
     </template>
 
     <template v-slot:actions>
-      <Action icon="back" :back="true"></Action>
-      <Action icon="forward" @click="start"></Action>
+      <Action icon="back" @click="prevPlayer" :disabled="currentShownPlayerIndex == 0"></Action>
+
+      <Action v-if="isReady()" icon="ok" @click="start"></Action>
+      <Action v-else icon="forward" @click="nextPlayer"></Action>
     </template>
   </Content>
 </template>
