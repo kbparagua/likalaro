@@ -2,6 +2,8 @@
   import { useRoute, useRouter } from 'vue-router';
   import SpyFall from '@/lib/SpyFall';
   import Timer from './game_screen/Timer.vue';
+  import Content from './Content.vue';
+  import Action from '@/views/core/Action.vue';
 
   const router = useRouter();
   const route = useRoute();
@@ -32,20 +34,27 @@
 </script>
 
 <template>
-  <div class="screen">
-    <div class="top-bar">
-      <span class="player">{{ player }}</span>
-      <span class="round">#{{ gameNumber }}</span>
-    </div>
+  <Content>
+    <template v-slot:main>
+      <div class="screen">
+        <div class="top-bar">
+          <span class="player">{{ player }}</span>
+          <span class="round">#{{ gameNumber }}</span>
+        </div>
 
-    <div>
-      <div class="location">{{ location }}</div>
-      <div class="role">{{ role  }}</div>
-    </div>
+        <div>
+          <div class="location">{{ location }}</div>
+          <div class="role">{{ role  }}</div>
+        </div>
 
-    <Timer v-if="isHost"></Timer>
-    <a href="#nextGame" @click.prevent="nextGame">Next Game</a>
-  </div>
+        <Timer v-if="isHost"></Timer>
+      </div>
+    </template>
+
+    <template v-slot:actions>
+      <Action icon="forward" @click="nextGame"></Action>
+    </template>
+  </Content>
 </template>
 
 <style scoped>

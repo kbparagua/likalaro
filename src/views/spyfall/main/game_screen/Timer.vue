@@ -59,23 +59,60 @@
 
 <template>
   <div class="timer">
-    <div v-if="isTimeUp">Time is up!</div>
-    <div class="time" v-else>{{ minutesDisplay }}:{{ secondsDisplay }}</div>
+    <i class="fi fi-bs-stopwatch timer-icon"></i>
+
+    <div class="display">
+      <div v-if="isTimeUp">Time is up!</div>
+      <div class="time" v-else>{{ minutesDisplay }}:{{ secondsDisplay }}</div>
+    </div>
 
     <a href="#reset" v-if="isTimeUp" @click.prevent="reset">Reset</a>
-    <a href="#toggle" v-else @click.prevent="toggleTick">{{ toggleAction }}</a>
-      {{ player }}: {{ joinUrls[i] }} <button class="copy-to-clipboard" :data-clipboard-text="joinUrls[i]">Copy</button>
+
+    <div v-else href="#toggle" class="btn" @click="toggleTick">
+      <i v-if="toggleAction === 'start'" class="fi fi-rr-play-circle start"></i>
+      <i v-else class="fi fi-rs-pause-circle pause"></i>
+    </div>
   </div>
 </template>
 
 <style scoped>
   .timer {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
+    background-color: #34495e;
+    border-radius: 0.5rem;
+    padding: 1rem;
     text-align: center;
   }
 
-  .time {
+  .timer-icon {
     font-size: 2rem;
-    font-family: 'Courier New', Courier, monospace;
-    color: #e74c3c; 
+    width: 2rem;
+    color: #7f8c8d;
+  }
+
+  .display {
+    flex-grow: 2;
+
+    .time {
+      font-size: 2.5rem;
+      font-family: 'Courier New', Courier, monospace;
+      text-align: left;
+      padding-top: 0.65rem;
+    }
+  }
+
+  .btn {
+    font-size: 3rem;
+
+    .start {
+      color: #27ae60;
+    }
+
+    .pause {
+      color: #e74c3c;
+    }
   }
 </style>
