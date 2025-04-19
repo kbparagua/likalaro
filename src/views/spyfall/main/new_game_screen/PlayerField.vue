@@ -17,8 +17,12 @@ watch(value, (newValue) => {
 
 <template>
   <div class="player-field">
-    <i class="fi fi-ss-user"></i>
+    <span class="player-icon">
+      <i class="fi fi-ss-user"></i>
+    </span>
+
     <input type="text" size="1" :placeholder="label" :name="label" v-model="value" />
+
     <a href="#remove" class="remove" @click.prevent="$emit('remove')">
       <i class="fi fi-rr-trash"></i>
     </a>
@@ -30,31 +34,36 @@ watch(value, (newValue) => {
     position: relative;
     display: flex;
     align-items: center;
-    margin-bottom: 12px;
+    margin-bottom: 1rem;
     background-color: #34495e;
     padding: 1.5rem 1rem;
     border-radius: 0.5rem;
     gap: 1rem;
 
-  input {
-    border-radius: 0.5rem;
-    padding: 0.75rem 0.5rem;
-    border: solid 1px transparent;
-    font-size: 1.25rem;
-    background-color: #4e6280;
-    color: white;
-    min-width: 70%;
-    flex-grow: 2;
+    .player-icon {
+      font-size: 1.5rem;
+    }
 
-    &:focus {
-      outline: none;
-      border: solid 1px #2980b9;
+    input {
+      border-radius: 0.5rem;
+      padding: 0.75rem 0.5rem;
+      border: solid 1px transparent;
+      font-size: 1.25rem;
+      background-color: #4e6280;
+      color: white;
+      min-width: 70%;
+      flex-grow: 2;
+
+      &:focus {
+        outline: none;
+        border: solid 1px #2980b9;
+      }
+    }
+
+    .remove {
+      color: #e74c3c;
+      flex-basis: content;
+      font-size: 2rem;
     }
   }
-
-  .remove {
-    color: #e74c3c;
-    flex-basis: content;
-  }
-}
 </style>

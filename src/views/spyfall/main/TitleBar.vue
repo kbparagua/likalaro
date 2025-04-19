@@ -14,20 +14,22 @@ defineEmits('titleClick');
 <style scoped>
   .title-bar {
     background-color: #8e44ad;
-    margin-top: -24px;
-    margin-left: -24px;
-    margin-right: -24px;
-    
-    padding: 12px 10px;
+    padding: 1rem; 
+    height: 4rem;
 
     a {
       display: flex;
-      gap: 6px;
-      text-transform: uppercase;
+      align-items: center;
+      gap: 0.5rem;
       color: white;
 
+      .fi {
+        font-size: 1.5rem;
+      }
+
       h1 {
-        font-size: 12px;
+        font-size: 1.25rem;
+        margin: 0;
       }
     }
 

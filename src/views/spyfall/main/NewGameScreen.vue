@@ -4,6 +4,7 @@ import { watch, reactive, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { MIN_PLAYERS, MAX_PLAYERS } from '@/lib/SpyFall';
 import PlayerField from "./new_game_screen/PlayerField.vue";
+import Content from './Content.vue';
 
 const router = useRouter();
 
@@ -88,28 +89,35 @@ function create() {
 </script>
 
 <template>
-  <div class="title">
-    <i class="fi fi-sr-users-alt"></i>
-    <h1>Players</h1>
-  </div>
+  <Content>
+    <template v-slot:main>
+      <div class="title">
+        <i class="fi fi-sr-users-alt"></i>
+        <h1>Players</h1>
+      </div>
 
-  <div class="players">
-    <template v-for="(player, i) in players" :key="player.id">
-      <PlayerField
-        :label="buildLabel(i)"
-        :removeable="isRemoveable(i)"
-        @change="(value) => setPlayer(i, value)"
-        @remove="removePlayer(i)">
-      </PlayerField>
+      <div class="players">
+        <template v-for="(player, i) in players" :key="player.id">
+          <PlayerField
+            :label="buildLabel(i)"
+            :removeable="isRemoveable(i)"
+            @change="(value) => setPlayer(i, value)"
+            @remove="removePlayer(i)">
+          </PlayerField>
+        </template>
+      </div>
+
+      <a href="#" class="add-player" @click.prevent="addPlayer">
+        <i class="fi fi-tr-add"></i>
+      </a>
     </template>
-  </div>
 
-  <a href="#" class="add-player" @click.prevent="addPlayer">
-    <i class="fi fi-tr-add"></i>
-  </a>
-  <a href="#" class="create-btn" @click.prevent="create" :disabled="!isValidGame">
-    <i class="fi fi-ss-angle-circle-right"></i>
-  </a>
+    <template v-slot:actions>
+      <a href="#" class="create-btn" @click.prevent="create" :disabled="!isValidGame">
+        <i class="fi fi-ss-angle-circle-right"></i>
+      </a>
+    </template>
+  </Content>
 </template>
 
 <style scoped>
@@ -144,9 +152,6 @@ function create() {
   }
 
   .create-btn {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
     font-size: 3rem;
   }
 </style>
