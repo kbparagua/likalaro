@@ -52,7 +52,7 @@
     </template>
 
     <template v-slot:actions>
-      <Action icon="forward" @click="nextGame"></Action>
+      <Action icon="forward" @click="nextGame" confirm="Go to next round?"></Action>
     </template>
   </Content>
 </template>

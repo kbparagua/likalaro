@@ -78,7 +78,12 @@
     <template v-slot:actions>
       <Action icon="back" @click="prevPlayer" :disabled="currentShownPlayerIndex == 0"></Action>
 
-      <Action v-if="isReady()" icon="ok" @click="start"></Action>
+      <Action
+        v-if="isReady()"
+        icon="ok"
+        @click="start"
+        confirm="Start game?">
+      </Action>
       <Action v-else icon="forward" @click="nextPlayer"></Action>
     </template>
   </Content>
