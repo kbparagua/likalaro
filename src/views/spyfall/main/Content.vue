@@ -1,4 +1,5 @@
 <script setup>
+  import HomeAction from '@/views/core/HomeAction.vue';
 </script>
 
 <template>
@@ -8,7 +9,10 @@
     </div>
 
     <div class="actions">
-      <slot name="actions"></slot>
+      <HomeAction></HomeAction>
+      <div class="custom">
+        <slot name="actions"></slot>
+      </div>
     </div>
   </div>
 </template>
@@ -19,7 +23,7 @@
     flex-direction: column;
     width: 100%;
     height: 100%;
-    max-height: calc(100dvh - 4rem);
+    max-height: 100dvh;
 
     .main {
       flex-grow: 0;
@@ -31,10 +35,15 @@
 
     .actions {
       display: flex;
-      justify-content: flex-end;
+      justify-content: flex-start;
       align-items: center;
       border-top: solid 1px #34495e;
-      flex-grow: 1;
+
+      .custom {
+        display: flex;
+        justify-content: flex-end;
+        flex-grow: 2;
+      }
     }
   }
 </style>

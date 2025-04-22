@@ -6,6 +6,7 @@
   const router = useRouter();
 
   const ICONS_CSS_CLASS_MAP = {
+    home: "fi fi-sr-house-blank",
     forward: "fi-ss-angle-circle-right",
     back: "fi-ss-angle-circle-left",
     ok: "fi-ss-check-circle",
