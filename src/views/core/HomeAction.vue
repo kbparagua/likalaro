@@ -2,7 +2,7 @@
   import { reactive } from 'vue';
   import Action from './Action.vue';
   import Window from './Window.vue';
-  import Button from './Button.vue';
+  import WindowButton from './WindowButton.vue';
 
   const menu = reactive({
     visible: false,
@@ -18,8 +18,8 @@
   <div>
     <Action icon="home" @click="showMenu"></Action>
     <Window :is-open="menu.visible" @close="hideMenu">
-      <Button path="/">Home</Button>
-      <Button path="/spyfall/new">New Game</Button>
+      <WindowButton path="/">Home</WindowButton>
+      <WindowButton path="/spyfall/new">New Game</WindowButton>
     </Window>
   </div>
 </template>
