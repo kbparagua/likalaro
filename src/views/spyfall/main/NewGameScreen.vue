@@ -29,6 +29,25 @@ function buildInitalPlayers() {
 const players = reactive(buildInitalPlayers());
 
 const canAddPlayer = computed(() => players.length < MAX_PLAYERS);
+const missingPlayers = computed(() => {
+  const count = MIN_PLAYERS - players.length;
+  return {
+    count,
+    playersString: count > 1 ? 'players' : 'player'
+  }
+});
+
+const instruction = computed(() => {
+  const missingPlayers = MIN_PLAYERS - players.length;
+  if (missingPlayers > 0) {
+    const playersString = missingPlayers > 1 ? 'players' : 'player';
+    return `Add ${missingPlayers} more ${playersString} to create a game.`;
+  }
+
+  if (MAX_PLAYERS == players.length) return "You've reached the player limit.";
+
+  return null;
+});
 
 watch(players, (newValue) => {
   console.log(players);
@@ -110,6 +129,8 @@ function create() {
         </template>
       </div>
 
+      <div v-if="instruction" class="instruction">{{ instruction }}</div>
+
       <div v-if="canAddPlayer" class="add-player" @click="addPlayer">
         <i class="fi fi-tr-add"></i>
       </div>
@@ -148,6 +169,12 @@ function create() {
 
   .players {
     margin-bottom: 2rem;
+  }
+  
+  .instruction {
+    font-size: 1rem;
+    text-align: center;
+    margin-bottom: 1.5rem;
   }
 
   .add-player {
