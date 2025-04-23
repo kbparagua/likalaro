@@ -28,6 +28,8 @@ function buildInitalPlayers() {
 
 const players = reactive(buildInitalPlayers());
 
+const canAddPlayer = computed(() => players.length < MAX_PLAYERS);
+
 watch(players, (newValue) => {
   console.log(players);
 })
@@ -108,9 +110,9 @@ function create() {
         </template>
       </div>
 
-      <a href="#" class="add-player" @click.prevent="addPlayer">
+      <div v-if="canAddPlayer" class="add-player" @click="addPlayer">
         <i class="fi fi-tr-add"></i>
-      </a>
+      </div>
     </template>
 
     <template v-slot:actions>
