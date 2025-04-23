@@ -9,6 +9,8 @@
   });
 
   const qr = ref("");
+  const clipboardClass = `${props.name}-copy`;
+  const copied = ref(false);
   let clipboard = null;
 
   QRCode.toDataURL(props.url, (err, imageData) => {
@@ -17,7 +19,15 @@
   });
 
   onMounted(() => {
-    clipboard = new Clipboard('.copy-to-clipboard');
+    if (clipboard) return;
+
+    console.log('init clipboard');
+    
+    clipboard = new Clipboard(`.${clipboardClass}`);
+    clipboard.on('success', (e) => {
+      copied.value = true;
+      setTimeout(() => copied.value = false, 500);
+    });
   });
 
   onUnmounted(() => {
@@ -32,11 +42,14 @@
       <img class="qr-code" :src="qr"></img>
     </div>
 
-    <div>or </div>
-    <div class="copy-to-clipboard" :data-clipboard-text="url">
-      <i class="fi fi-rs-paper-plane"></i>
-      <span>share link</span>
-    </div>
+    <div>or</div>
+    <div class="copy-to-clipboard" :class="{ [clipboardClass]: true, copied: copied }" :data-clipboard-text="url">
+      <span v-if="copied">Copied</span>
+      <template v-else>
+        <i class="fi fi-rs-paper-plane"></i>
+        <span>share link</span>
+      </template>
+   </div>
   </div>
 </template>
 
@@ -53,4 +66,22 @@
   .qr-code {
     width: 90vw;
   }
+
+  .copy-to-clipboard {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    background-color: white;
+    color: #8e44ad;
+    padding: 1.5rem 1.25rem;
+    border-radius: 0.75rem;
+    font-weight: bold;
+    
+    &.copied {
+      background-color: #8e44ad;
+      color: white;
+    }
+  }
+
 </style>
