@@ -146,6 +146,18 @@ const LOCATIONS = [
       'Fan'
     ]
   },
+  {
+    name: 'Department Store',
+    roles: [
+      'Salesperson',
+      'Promodiser',
+      'Customer',
+      'Cashier',
+      'Security Guard',
+      'Gift Wrapping Assistant',
+      'Baggage Counter Assistant'
+    ]
+  }
 ];
 
 const SPY_LOCATION = 'Unknown';
