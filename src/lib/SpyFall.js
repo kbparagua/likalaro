@@ -4,6 +4,7 @@ import { Randomizer } from "./Randomizer";
 const LOCATIONS = [
   {
     name: 'Airport',
+    icon: '🛬',
     roles: [
       'Pilot',
       'Co-Pilot',
@@ -16,6 +17,7 @@ const LOCATIONS = [
   },
   {
     name: 'Bank',
+    icon: '🏦',
     roles: [
       'Branch Manager',
       'Security Guard',
@@ -28,6 +30,7 @@ const LOCATIONS = [
   },
   {
     name: 'Casino',
+    icon: '🎰',
     roles: [
       'Bouncer',
       'Dealer',
@@ -40,6 +43,7 @@ const LOCATIONS = [
   },
   {
     name: 'Hospital',
+    icon: '🏥',
     roles: [
       'Doctor',
       'Nurse',
@@ -52,6 +56,7 @@ const LOCATIONS = [
   },
   {
     name: 'Police Station',
+    icon: '👮',
     roles: [
       'Police',
       'Chief of Police',
@@ -64,6 +69,7 @@ const LOCATIONS = [
   },
   {
     name: 'Corporate Office',
+    icon: '🏢',
     roles: [
       'CEO',
       'HR Manager',
@@ -76,6 +82,7 @@ const LOCATIONS = [
   },
   {
     name: 'Hotel',
+    icon: '🏨',
     roles: [
       'Security Guard',
       'Doorman',
@@ -88,6 +95,7 @@ const LOCATIONS = [
   },
   {
     name: 'Movie Studio',
+    icon: '🎬',
     roles: [
       'Cameraman',
       'Director',
@@ -100,6 +108,7 @@ const LOCATIONS = [
   },
   {
     name: 'Restaurant',
+    icon: '🍴',
     roles: [
       'Head Chef',
       'Waiter',
@@ -111,7 +120,8 @@ const LOCATIONS = [
     ]
   },
   {
-    name: 'University',
+    name: 'School',
+    icon: '🏫',
     roles: [
       'Principal',
       'Janitor',
@@ -124,6 +134,7 @@ const LOCATIONS = [
   },
   {
     name: 'Supermarket',
+    icon: '🛒',
     roles: [
       'Customer',
       'Cashier',
@@ -136,6 +147,7 @@ const LOCATIONS = [
   },
   {
     name: 'Basketball Court',
+    icon: '🏀',
     roles: [
       'Coach',
       'Referee',
@@ -148,6 +160,7 @@ const LOCATIONS = [
   },
   {
     name: 'Department Store',
+    icon: '🏬',
     roles: [
       'Salesperson',
       'Promodiser',
@@ -160,6 +173,7 @@ const LOCATIONS = [
   },
   {
     name: 'Beach Resort',
+    icon: '🏖️',
     roles: [
       'Scuba Diver',
       'Lifeguard',
@@ -172,6 +186,7 @@ const LOCATIONS = [
   },
   {
     name: 'Amusement Park',
+    icon: '🎡',
     roles: [
       'Ride Operator',
       'Security Officer',
@@ -184,6 +199,7 @@ const LOCATIONS = [
   },
   {
     name: 'Zoo',
+    icon: '🐅',
     roles: [
       'Tour Guide',
       'Student',
@@ -196,6 +212,7 @@ const LOCATIONS = [
   },
   {
     name: 'Concert Grounds',
+    icon: '🎸',
     roles: [
       'Band Manager',
       'Vocalist',
@@ -208,6 +225,7 @@ const LOCATIONS = [
   },
   {
     name: 'Fitness Gym',
+    icon: '💪🏼',
     roles: [
       'Bodybuilder',
       'Personal Trainer',
@@ -220,6 +238,7 @@ const LOCATIONS = [
   },
   {
     name: 'Library',
+    icon: '📚',
     roles: [
       'Librarian',
       'Student',
@@ -232,6 +251,7 @@ const LOCATIONS = [
   },
   {
     name: 'Construction Site',
+    icon: '🏗️',
     roles: [
       'Architect',
       'Plumber',
