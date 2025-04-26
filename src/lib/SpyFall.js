@@ -3,21 +3,27 @@ import { Randomizer } from "./Randomizer";
 
 const LOCATIONS = [
   {
-    name: 'Airplane',
+    name: 'Airport',
     roles: [
       'Pilot',
       'Co-Pilot',
-      'Stewardess',
-      'First Class Passenger'
+      'Flight Attendant',
+      'Immigration Officer',
+      'Airplane Mechanic',
+      'First Class Passenger',
+      'Economy Class Passenger',
     ]
   },
   {
     name: 'Bank',
     roles: [
-      'Manager',
+      'Branch Manager',
       'Security Guard',
       'Teller',
-      'Customer'
+      'Customer',
+      'VIP Customer',
+      'Armored Car Driver',
+      'Loan Officer',
     ]
   },
   {
@@ -26,7 +32,10 @@ const LOCATIONS = [
       'Bouncer',
       'Dealer',
       'Gambler',
-      'Manager'
+      'Manager',
+      'Bartender',
+      'Security Guard',
+      'Cashier'
     ]
   },
   {
@@ -35,16 +44,94 @@ const LOCATIONS = [
       'Doctor',
       'Nurse',
       'Patient',
-      'Intern'
+      'Intern',
+      'Ambulance Driver',
+      'Surgeon',
+      'X-ray Technician'
     ]
   },
   {
     name: 'Police Station',
     roles: [
       'Police',
+      'Chief of Police',
       'Detective',
       'Lawyer',
-      'Journalist'
+      'Criminal',
+      'News Reporter',
+      'Victim',
+    ]
+  },
+  {
+    name: 'Corporate Office',
+    roles: [
+      'CEO',
+      'HR Manager',
+      'Accountant',
+      'Liaison Officer',
+      'Intern',
+      'Tech Support Officer',
+      'Receptionist',
+    ]
+  },
+  {
+    name: 'Hotel',
+    roles: [
+      'Security Guard',
+      'Doorman',
+      'Hotel Manager',
+      'Receptionist',
+      'Housekeeper',
+      'Guest',
+      'Maintenance Technician'
+    ]
+  },
+  {
+    name: 'Movie Studio',
+    roles: [
+      'Cameraman',
+      'Director',
+      'Actor',
+      'Sound Engineer',
+      'Stuntman',
+      'Costume Designer',
+      'Producer'
+    ]
+  },
+  {
+    name: 'Restaurant',
+    roles: [
+      'Head Chef',
+      'Waiter',
+      'Food Critic',
+      'Customer',
+      'Musician',
+      'Restaurant Manager',
+      'Dishwasher'
+    ]
+  },
+  {
+    name: 'University',
+    roles: [
+      'Principal',
+      'Janitor',
+      'Security Guard',
+      'Student',
+      'Gym Teacher',
+      'Varsity Player',
+      'School Nurse'
+    ]
+  },
+  {
+    name: 'Supermarket',
+    roles: [
+      'Customer',
+      'Cashier',
+      'Butcher',
+      'Promodiser',
+      'Security Guard',
+      'Bagger',
+      'Shelf Stocker'
     ]
   }
 ];
