@@ -193,6 +193,18 @@ const LOCATIONS = [
       'Researcher',
       'Photographer'
     ]
+  },
+  {
+    name: 'Concert Grounds',
+    roles: [
+      'Band Manager',
+      'Vocalist',
+      'Guitarist',
+      'Drummer',
+      'Fan',
+      'Security Staff',
+      'Audio Engineer'
+    ]
   }
 ];
 
