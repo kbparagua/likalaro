@@ -157,6 +157,18 @@ const LOCATIONS = [
       'Gift Wrapping Assistant',
       'Baggage Counter Assistant'
     ]
+  },
+  {
+    name: 'Beach Resort',
+    roles: [
+      'Scuba Diver',
+      'Lifeguard',
+      'Surf Instructor',
+      'Resort Staff',
+      'Resort Manager',
+      'Massage Therapist',
+      'Guest'
+    ]
   }
 ];
 
