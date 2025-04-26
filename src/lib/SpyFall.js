@@ -133,7 +133,19 @@ const LOCATIONS = [
       'Bagger',
       'Shelf Stocker'
     ]
-  }
+  },
+  {
+    name: 'Basketball Court',
+    roles: [
+      'Coach',
+      'Referee',
+      'Star Player',
+      'Three-pointer',
+      'Rebounder',
+      'Team Captain',
+      'Fan'
+    ]
+  },
 ];
 
 const SPY_LOCATION = 'Unknown';
