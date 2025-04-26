@@ -219,15 +219,15 @@ const LOCATIONS = [
     ]
   },
   {
-    name: '',
+    name: 'Library',
     roles: [
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
+      'Librarian',
+      'Student',
+      'Journalist',
+      'Professor',
+      'Bookworm',
+      'Author',
+      'Geek',
     ]
   },
   {
