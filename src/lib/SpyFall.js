@@ -181,6 +181,18 @@ const LOCATIONS = [
       'Mascot Performer',
       'Balloon Vendor',
     ]
+  },
+  {
+    name: 'Zoo',
+    roles: [
+      'Tour Guide',
+      'Student',
+      'Zookeeper',
+      'Gardener',
+      'Veterinarian',
+      'Researcher',
+      'Photographer'
+    ]
   }
 ];
 
