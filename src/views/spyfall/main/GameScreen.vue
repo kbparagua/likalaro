@@ -16,6 +16,7 @@
 
   const spyfall = new SpyFall({ seed, numberOfPlayers });
   const location = spyfall.location(index);
+  const icon = spyfall.icon(index);
   const role = spyfall.role(index);
 
   function nextGame() {
@@ -43,6 +44,7 @@
         </div>
 
         <div>
+          <div class="icon">{{ icon }}</div>
           <div class="location">{{ location }}</div>
           <div class="role">{{ role  }}</div>
         </div>
@@ -75,8 +77,15 @@
     padding: 0.5rem;
   }
 
+  .icon {
+    display: flex;
+    justify-content: center;
+    font-size: 5rem;
+    margin-bottom: 1rem;
+  }
+
   .location {
-    font-size: 4rem;
+    font-size: 3rem;
     text-align: center;
     margin-bottom: 0.5rem;
   }

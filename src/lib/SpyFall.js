@@ -266,6 +266,7 @@ const LOCATIONS = [
 
 const SPY_LOCATION = 'Unknown';
 const SPY_ROLE = 'Spy';
+const SPY_ICON = '❓';
 
 export const MIN_PLAYERS = 3;
 export const MAX_PLAYERS = 8;
@@ -278,6 +279,10 @@ export default class {
 
   nextSeed() {
     return this.randomizer.nextSeed;
+  }
+
+  icon(index) {
+    return this._icon ||= this.#isSpy(index) ? SPY_ICON : this.#locationData().icon;
   }
 
   location(index) {
