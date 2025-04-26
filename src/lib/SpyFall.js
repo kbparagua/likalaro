@@ -169,6 +169,18 @@ const LOCATIONS = [
       'Massage Therapist',
       'Guest'
     ]
+  },
+  {
+    name: 'Amusement Park',
+    roles: [
+      'Ride Operator',
+      'Security Officer',
+      'Food Vendor',
+      'Janitor',
+      'Parent',
+      'Mascot Performer',
+      'Balloon Vendor',
+    ]
   }
 ];
 
