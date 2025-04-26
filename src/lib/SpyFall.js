@@ -205,7 +205,43 @@ const LOCATIONS = [
       'Security Staff',
       'Audio Engineer'
     ]
-  }
+  },
+  {
+    name: 'Fitness Gym',
+    roles: [
+      'Bodybuilder',
+      'Personal Trainer',
+      'New Member',
+      'Nutritionist',
+      'Membership Sales Agent',
+      'Front Desk Staff',
+      'Yoga Instructor',
+    ]
+  },
+  {
+    name: '',
+    roles: [
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+    ]
+  },
+  {
+    name: '',
+    roles: [
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+      '',
+    ]
+  },
 ];
 
 const SPY_LOCATION = 'Unknown';
