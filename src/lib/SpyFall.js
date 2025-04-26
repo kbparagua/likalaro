@@ -1,7 +1,7 @@
 import { ssrModuleExportsKey } from "vite/module-runner";
 import { Randomizer } from "./Randomizer";
 
-const LOCATIONS = [
+export const LOCATIONS = [
   {
     name: 'Airport',
     icon: '🛬',

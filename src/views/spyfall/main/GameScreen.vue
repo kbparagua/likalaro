@@ -1,9 +1,10 @@
 <script setup>
   import { useRoute, useRouter } from 'vue-router';
-  import SpyFall from '@/lib/SpyFall';
+  import SpyFall, { LOCATIONS } from '@/lib/SpyFall';
   import Timer from './game_screen/Timer.vue';
   import Content from './Content.vue';
   import Action from '@/views/core/Action.vue';
+  import LocationsSheet from './game_screen/LocationsSheet.vue';
 
   const router = useRouter();
   const route = useRoute();
@@ -51,6 +52,7 @@
 
         <Timer v-if="isHost"></Timer>
       </div>
+      <LocationsSheet :locations="LOCATIONS"></LocationsSheet>
     </template>
 
     <template v-slot:actions>
