@@ -231,15 +231,15 @@ const LOCATIONS = [
     ]
   },
   {
-    name: '',
+    name: 'Construction Site',
     roles: [
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
-      '',
+      'Architect',
+      'Plumber',
+      'Electrician',
+      'Engineer',
+      'Fire Department Inspector',
+      'Construction Worker',
+      'Foreman',
     ]
   },
 ];
