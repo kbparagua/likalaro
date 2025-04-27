@@ -67,7 +67,7 @@
 
 <style scoped>
   .action {
-    color: #9b59b6;
+    color: var(--actions-standard-text);
     font-size: 3rem;
     padding: 1.75rem;
 

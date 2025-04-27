@@ -110,12 +110,13 @@
     font-size: 3rem;
     text-align: center;
     margin-bottom: 0.5rem;
+    color: var(--text-highlight);
   }
 
   .role {
     font-size: 1rem;
     text-align: center;
-    background-color: #2f3640; 
+    background-color: var(--bg-secondary);
     padding: 0.5rem;
     border-radius: 0.5rem;
   }

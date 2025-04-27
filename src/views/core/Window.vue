@@ -8,21 +8,22 @@
 
 <template>
   <div class="window" :class="{ open: isOpen }">
-    <a href="#" class="close-btn" @click.prevent="$emit('close')">
-      <i class="fi fi-sr-circle-xmark"></i>
-    </a>
-
     <div class="content">
       <slot></slot>
+    </div>
+
+    <div class="close-btn" @click.prevent="$emit('close')">
+      <i class="fi fi-sr-angle-circle-down"></i>
     </div>
   </div>
 </template>
 
 <style scoped>
   .window {
+    display: none;
+
     background-color: #8e44ad;
     position: absolute;
-    display: none;
     top: 100vh;
     left: 0;
     width: 100%;
@@ -43,11 +44,9 @@
   }
 
   .close-btn {
-    position: absolute;
-    bottom: 2rem;
-    right: 2rem;
     font-size: 3rem;
     color: white;
+    text-align: center;
   }
 
   .content {

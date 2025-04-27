@@ -1,0 +1,10 @@
+html {
+  --bg-primary: #2c3e50;
+  --bg-secondary: #34495e;
+
+  --text-default: #bdc3c7; 
+  --text-highlight: #9b59b6;
+
+  --actions-standard-text: #ecf0f1;
+  --actions-primary-text: #8e44ad;
+}
