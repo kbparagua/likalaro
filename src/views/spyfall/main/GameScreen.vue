@@ -1,9 +1,11 @@
 <script setup>
+  import { reactive } from 'vue';
   import { useRoute, useRouter } from 'vue-router';
   import SpyFall, { LOCATIONS } from '@/lib/SpyFall';
   import Timer from './game_screen/Timer.vue';
   import Content from './Content.vue';
   import Action from '@/views/core/Action.vue';
+  import Window from '@/views/core/Window.vue';
   import LocationsSheet from './game_screen/LocationsSheet.vue';
 
   const router = useRouter();
@@ -20,6 +22,12 @@
   const icon = spyfall.icon(index);
   const role = spyfall.role(index);
 
+  const locationsSheet = reactive({
+    visible: false,
+    show() { this.visible = true; },
+    hide() { this.visible = false; }
+  });
+
   function nextGame() {
     const nextSeed = spyfall.nextSeed();
     router.push({
@@ -32,6 +40,14 @@
         player
       }
     });
+  }
+
+  function showLocations() {
+    locationsSheet.show();
+  }
+
+  function hideLocations() {
+    locationsSheet.hide();
   }
 </script>
 
@@ -52,11 +68,15 @@
 
         <Timer v-if="isHost"></Timer>
       </div>
-      <LocationsSheet :locations="LOCATIONS"></LocationsSheet>
+
+      <Window :is-open="locationsSheet.visible" @close="hideLocations">
+        <LocationsSheet :locations="LOCATIONS"></LocationsSheet>
+      </Window>
     </template>
 
     <template v-slot:actions>
-      <Action icon="forward" @click="nextGame" confirm="Go to next round?"></Action>
+      <Action icon="location" @click="showLocations" /> 
+      <Action icon="forward" @click="nextGame" confirm="Go to next round?" />
     </template>
   </Content>
 </template>

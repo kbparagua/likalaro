@@ -18,10 +18,6 @@
 
 <style scoped>
   .locations-sheet {
-    position: absolute;
-    top: 0;
-    left: 0;
-    background-color: #34495e;
     width: 100%;
     height: 100%;
 
@@ -29,6 +25,7 @@
     flex-wrap: wrap;
     align-content: flex-end;
     gap: 0.75rem;
-    padding: 1.5rem;
+
+    margin-bottom: 5rem;
   }
 </style>

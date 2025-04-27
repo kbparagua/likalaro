@@ -10,6 +10,7 @@
     forward: "fi-ss-angle-circle-right",
     back: "fi-ss-angle-circle-left",
     ok: "fi-ss-check-circle",
+    location: "fi-ss-marker"
   };
 
   const emit = defineEmits(['click']);
