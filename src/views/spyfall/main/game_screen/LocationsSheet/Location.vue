@@ -9,33 +9,52 @@
   });
 
   const cssClass = ref(null);
-  const top = ref(0);
+  const mark = ref(null);
   const left = ref(0);
 
-  function changeState(e) {
-    if (cssClass.value) return cssClass.value = null;
-
+  function focus(e) {
     const rect = e.currentTarget.getBoundingClientRect();
-    top.value = rect.top;
     left.value = rect.left;
-    console.log(rect);
     cssClass.value = 'focused';
+  }
+
+  function unfocus() {
+    cssClass.value = '';
+  }
+
+  function highlight() {
+    mark.value = 'highlight';
+    unfocus();
+  }
+
+  function strike() {
+    mark.value = 'strike';
+    unfocus();
+  }
+
+  function reset() {
+    mark.value = null;
+    unfocus();
   }
 </script>
 
 <template>
-  <div class="location" :class="cssClass" @click="changeState">
+  <div class="location" :class="{ [cssClass]: true, [mark]: true }" @click="focus">
     <div class="display">{{ name }}</div>
+
     <div class="actionable" :style="{ left: -left + 'px' }">
       <div class="name">{{ name }}</div>
       <div class="actions">
-        <span class="action highlight">
+        <span v-if="mark != 'highlight'" class="action highlight" @click.stop="highlight">
           <i class="fi fi-sr-star"></i>
         </span>
-        <span class="action strike">
+        <span v-if="mark != 'strike'" class="action strike" @click.stop="strike">
           <i class="fi fi-bs-ban"></i>
         </span>
-        <span class="action">
+        <span class="action reset" @click.stop="reset">
+          <i class="fi fi-rs-rotate-left"></i>
+        </span>
+        <span class="action" @click.stop="unfocus">
           <i class="fi fi-rr-angle-double-small-right"></i>
         </span>
       </div>
@@ -59,14 +78,13 @@
     border-width: 1px;
     border-color: transparent;
 
-    &.strike {
+    &.strike .display {
       color: #7f8c8d;
       text-decoration: line-through;
       font-style: italic;
-      opacity: 0.5;
     }
 
-    &.highlight {
+    &.highlight .display {
       color: #27ae60;
       border-color: #27ae60;
     }
