@@ -12,9 +12,7 @@
 
 <template>
   <div class="locations-sheet">
-    <div class="location" v-for="(location) in locations">
-      <Location :name="location.name"></Location>
-    </div>
+    <Location v-for="(location) in locations" :name="location.name" />
   </div>
 </template>
 
