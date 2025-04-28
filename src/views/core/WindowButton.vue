@@ -14,13 +14,15 @@
 <style scoped>
   .button {
     width: 100%;
-    padding: 24px 8px;
+    padding: 2rem 0.5rem;
     background-color: white;
-    border-radius: 8px;
+    border-radius: 0.75rem;
     text-align: center;
 
     text-transform: uppercase;
     font-weight: bold;
+
+    text-decoration: none;
   }
 </style>
 

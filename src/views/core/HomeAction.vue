@@ -18,11 +18,21 @@
   <div>
     <Action icon="home" @click="showMenu"></Action>
     <Window :is-open="menu.visible" @close="hideMenu">
-      <WindowButton path="/">Home</WindowButton>
-      <WindowButton path="/spyfall/new">New Game</WindowButton>
+      <div class="menu">
+        <WindowButton path="/">Home</WindowButton>
+        <WindowButton path="/spyfall/new">New Game</WindowButton>
+      </div>
     </Window>
   </div>
 </template>
 
-<style>
+<style scoped>
+  .menu {
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+  }
 </style>

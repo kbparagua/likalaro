@@ -24,11 +24,15 @@
 <template>
   <div class="window" :class="{ open: isOpen, closing: isClosing }" @animationend="animationEnd">
     <div class="content">
-      <slot></slot>
-    </div>
+      <div class="main">
+        <slot></slot>
+      </div>
 
-    <div class="close-btn" @click="close">
-      <i class="fi fi-sr-angle-circle-down"></i>
+      <div class="controls">
+        <div class="close-btn" @click="close">
+          <i class="fi fi-sr-angle-circle-down"></i>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -38,16 +42,15 @@
     display: none;
 
     background-color: #8e44ad;
+
     position: absolute;
-    top: 100vh;
     left: 0;
+
     width: 100%;
     height: 100%;
     z-index: 2;
 
-    transition:  0.25s;
-
-    padding: 24px;
+    padding: 2rem;
 
     &.open {
       display: block;
@@ -61,12 +64,6 @@
     }
   }
 
-  .close-btn {
-    font-size: 3rem;
-    color: white;
-    text-align: center;
-  }
-
   .content {
     display: flex;
     flex-direction: column;
@@ -74,5 +71,16 @@
     align-items: center;
     gap: 1rem;
     height: 100%;
+
+    .main {
+      flex-grow: 1;
+      width: 100%;
+    }
+
+    .controls {
+      width: 100%;
+      text-align: right;
+      font-size: 3rem;
+    }
   }
 </style>
