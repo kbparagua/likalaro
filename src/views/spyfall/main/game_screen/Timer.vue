@@ -81,7 +81,7 @@
     justify-content: start;
     align-items: center;
     gap: 1rem;
-    background-color: #34495e;
+    background-color: var(--bg1);
     border-radius: 0.5rem;
     padding: 1rem;
     text-align: center;
@@ -90,7 +90,6 @@
   .timer-icon {
     font-size: 2rem;
     width: 2rem;
-    color: #7f8c8d;
   }
 
   .display {
@@ -98,9 +97,7 @@
 
     .time {
       font-size: 2.5rem;
-      font-family: 'Courier New', Courier, monospace;
       text-align: left;
-      padding-top: 0.65rem;
     }
   }
 
@@ -108,11 +105,11 @@
     font-size: 3rem;
 
     .start {
-      color: #27ae60;
+      color: var(--cold2);
     }
 
     .pause {
-      color: #e74c3c;
+      color: var(--warm2);
     }
   }
 </style>

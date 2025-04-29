@@ -41,7 +41,7 @@
   .window {
     display: none;
 
-    background-color: #8e44ad;
+    background-color: var(--bg1);
 
     position: absolute;
     left: 0;

@@ -15,7 +15,8 @@
   .button {
     width: 100%;
     padding: 2rem 0.5rem;
-    background-color: white;
+    background-color: var(--bg-primary);
+    color: var(--cold0);
     border-radius: 0.75rem;
     text-align: center;
 

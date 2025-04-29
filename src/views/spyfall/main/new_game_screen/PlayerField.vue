@@ -24,9 +24,9 @@ watch(value, (newValue) => {
     <input type="text" size="1" :placeholder="label" :name="label" v-model="value" />
 
     <span class="remove-container">
-      <a href="#remove" class="remove" v-if="removeable" @click.prevent="$emit('remove')">
+      <span class="remove" v-if="removeable" @click="$emit('remove')">
         <i class="fi fi-rr-trash"></i>
-      </a>
+      </span>
     </span>
   </div>
 </template>
@@ -37,7 +37,7 @@ watch(value, (newValue) => {
     display: flex;
     align-items: center;
     margin-bottom: 1rem;
-    background-color: #34495e;
+    background-color: var(--bg1);
     padding: 1.5rem 1rem;
     border-radius: 0.5rem;
     gap: 1rem;
@@ -51,14 +51,14 @@ watch(value, (newValue) => {
       padding: 0.75rem 0.5rem;
       border: solid 1px transparent;
       font-size: 1.25rem;
-      background-color: #4e6280;
-      color: white;
+      background-color: var(--bg0);
+
       min-width: 70%;
       flex-grow: 2;
 
       &:focus {
         outline: none;
-        border: solid 1px #2980b9;
+        border: solid 1px var(--cold0);
       }
     }
 
@@ -67,7 +67,7 @@ watch(value, (newValue) => {
       text-align: center;
 
       .remove {
-        color: #e74c3c;
+        color: var(--warm2);
         flex-basis: content;
         font-size: 2rem;
       }

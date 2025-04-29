@@ -67,7 +67,7 @@
     position: relative;
     flex-grow: 1;
 
-    background-color: #2c3e50; 
+    background-color: var(--bg-primary);
     border-radius: 0.75rem;
     padding: 1.5rem; 
 
@@ -79,20 +79,19 @@
     border-color: transparent;
 
     &.strike .display {
-      color: #7f8c8d;
+      color: var(--text3);
       text-decoration: line-through;
       font-style: italic;
     }
 
     &.highlight .display {
-      color: #27ae60;
-      border-color: #27ae60;
+      color: var(--cold0);
     }
 
     .actionable {
       display: none;
 
-      background-color: #2c3e50; 
+      background-color: var(--bg-primary);
 
       font-size: 1.25rem;
       text-align: center;
@@ -132,11 +131,11 @@
       padding: 1.5rem;
 
       &.highlight {
-        color: #9b59b6;
+        color: var(--cold0);
       }
 
       &.strike {
-        color: #c0392b;
+        color: var(--warm1);
       }
     }
   }

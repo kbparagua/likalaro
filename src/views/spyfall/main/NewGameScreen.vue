@@ -157,7 +157,7 @@ function create() {
 
     .fi {
       font-size: 4rem;
-      color: #27ae60;
+      color: var(--cold2);
     }
 
     h1 {
@@ -180,7 +180,7 @@ function create() {
   .add-player {
     text-align: center;
     font-size: 3rem;
-    color: white;
+    color: var(--warm0);
   }
 
   .create-btn {

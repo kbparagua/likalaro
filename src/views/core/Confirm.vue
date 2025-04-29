@@ -55,7 +55,7 @@
 
     flex-direction: column;
 
-    background-color: #8e44ad;
+    background-color: var(--bg-secondary);
     width: 100%;
     height: 20dvh;
     padding: 2rem;
