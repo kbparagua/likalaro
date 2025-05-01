@@ -98,7 +98,6 @@
 
       border-style: solid;
       border-width: 1px;
-      /* border-color: #9b59b6; */
       border-color: transparent;
       border-left-width: 0;
       border-right-width: 0;

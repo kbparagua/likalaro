@@ -1,18 +1,15 @@
 <script setup>
-  defineEmits('click');
-  const props = defineProps({
-    path: String
-  });
+  defineEmits(['click']);
 </script>
 
 <template>
-  <RouterLink :to="path" class="button">
+  <div class="menu-item" @click="$emit('click')">
     <slot></slot>
-  </RouterLink>
+  </div>
 </template>
 
 <style scoped>
-  .button {
+  .menu-item {
     width: 100%;
     padding: 2rem 0.5rem;
     background-color: var(--bg-primary);
@@ -26,4 +23,3 @@
     text-decoration: none;
   }
 </style>
-

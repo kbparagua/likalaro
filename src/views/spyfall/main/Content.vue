@@ -1,5 +1,5 @@
 <script setup>
-  import HomeAction from '@/views/core/HomeAction.vue';
+  import HomeAction from './content/HomeAction.vue'
 </script>
 
 <template>
