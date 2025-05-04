@@ -10,16 +10,17 @@
 
   const cssClass = ref(null);
   const mark = ref(null);
-  const left = ref(0);
+  const top = ref(0);
 
   function focus(e) {
     const rect = e.currentTarget.getBoundingClientRect();
-    left.value = rect.left;
+    top.value = rect.top;
+
     cssClass.value = 'focused';
   }
 
-  function unfocus() {
-    cssClass.value = '';
+  function unfocus(e) {
+    cssClass.value = 'unfocus';
   }
 
   function highlight() {
@@ -36,13 +37,17 @@
     mark.value = null;
     unfocus();
   }
+
+  function handleUnfocus() {
+    if (cssClass.value == 'unfocus') cssClass.value = null;
+  }
 </script>
 
 <template>
-  <div class="location" :class="{ [cssClass]: true, [mark]: true }" @click="focus">
+  <div class="location" :class="{ [cssClass]: true, [mark]: !!mark }" @click="focus">
     <div class="display">{{ name }}</div>
 
-    <div class="actionable" :style="{ left: -left + 'px' }">
+    <div class="actionable" :style="{ top: top + 'px' }" @animationend="handleUnfocus">
       <div class="name">{{ name }}</div>
       <div class="actions">
         <span v-if="mark != 'highlight'" class="action highlight" @click.stop="highlight">
@@ -64,7 +69,6 @@
 
 <style scoped>
   .location {
-    position: relative;
     flex-grow: 1;
 
     background-color: var(--bg-primary);
@@ -98,28 +102,42 @@
 
       border-style: solid;
       border-width: 1px;
-      border-color: transparent;
+      border-color: var(--cold1);
       border-left-width: 0;
       border-right-width: 0;
 
       width: 100vw;
 
       align-items: center;
+
+      position: absolute;
+
+      .name { 
+        flex-grow: 1;
+        text-align: left;
+        padding: 1.5rem;
+      }
     }
 
     &.focused {
       .actionable {
-        position: absolute;
         display: flex;
-        top: 0;
+        left: 0;
         z-index: 9;
 
-        .name { 
-          flex-grow: 1;
-          text-align: left;
-          padding: 1.5rem;
-        }
+        animation: 0.1s ease-out 0s from-right-slide-in;
+
       } 
+    }
+    
+    &.unfocus {
+      .actionable {
+        display: flex;
+        left: 100vw;
+        z-index: 9;
+
+        animation: 0.1s ease-in 0s from-left-slide-out;
+      }
     }
   }
 

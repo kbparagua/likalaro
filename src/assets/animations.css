@@ -17,3 +17,23 @@
     transform: translateY(100dvh);
   }
 }
+
+@keyframes from-right-slide-in {
+  0% {
+    transform: translateX(100vw);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes from-left-slide-out {
+  0% {
+    transform: translateX(-100vw);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
