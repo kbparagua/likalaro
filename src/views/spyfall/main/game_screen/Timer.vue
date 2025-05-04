@@ -1,5 +1,7 @@
 <script setup>
-  import { ref, computed } from 'vue';
+  import { ref, computed, watch } from 'vue';
+  import testBellUrl from '@/assets/test_bell.wav';
+  import testAlarmUrl from '@/assets/test_alarm.wav';
 
   const DEFAULT_MINUTES = 8;
   const TICK_INTERVAL_MS = 1000;
@@ -11,11 +13,31 @@
   const minutesDisplay = ref(minutes.toString());
   const isTimeUp = ref(false);
  
+  const bellSound = new Audio(testBellUrl);
+  bellSound.volume = 0.5;
+
+  const alarmSound = new Audio(testAlarmUrl);
+  alarmSound.volume = 0.5;
+  alarmSound.loop = true;
+
+  watch(secondsDisplay, (newValue) => {
+    if (newValue != '00') return;
+
+    if (minutesDisplay.value == '0') {
+      alarmSound.play();
+    } else {
+      bellSound.play();
+    }
+  });
+
   function reset() {
     seconds = 0;
     minutes = DEFAULT_MINUTES;
     isTimeUp.value = false;
     startTick();
+
+    alarmSound.pause();
+    bellSound.pause();
   }
 
   function formatSeconds() {
