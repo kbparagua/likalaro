@@ -3,7 +3,9 @@
   import testBellUrl from '@/assets/test_bell.wav';
   import testAlarmUrl from '@/assets/test_alarm.wav';
 
-  const DEFAULT_MINUTES = 3;
+  const DEFAULT_MINUTES = 4;
+  const WARNING_MINUTE = 2;
+  const DANGER_MINUTE = 1;
   const TICK_INTERVAL_MS = 150;
 
   const intervalId = ref(null);
@@ -28,15 +30,37 @@
   alarmSound.volume = 0.5;
   alarmSound.loop = true;
 
-  watch(time, (newTime) => {
-    if (newTime.seconds > 0) return;
+  watch(time, () => {
+    if (inWarningZone()) {
+      warningTick();
+    } else if (time.minutes <= DANGER_MINUTE) {
+      dangerTick();
+    } else {
+      regularTick();
+    }
+  });
 
-    if (newTime.minutes == 0) {
+  function inWarningZone() {
+    return (time.minutes == WARNING_MINUTE && time.seconds == 0) ||
+      (time.minutes < WARNING_MINUTE && time.minutes > DANGER_MINUTE) ||
+      (time.minutes == DANGER_MINUTE && time.seconds > 0);
+  }
+
+  function warningTick() {
+    if (time.seconds % 5 == 0) bellSound.play();
+  }
+
+  function dangerTick() {
+    if (time.minutes == 0 && time.seconds == 0) {
       timesUp();
     } else {
       bellSound.play();
     }
-  });
+  }
+
+  function regularTick() {
+    if (time.seconds == 0) bellSound.play();
+  }
 
   function timesUp() {
     stopTick();
