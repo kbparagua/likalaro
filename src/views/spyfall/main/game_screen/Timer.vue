@@ -1,27 +1,24 @@
 <script setup>
-  import { ref, computed, watch, reactive } from 'vue';
+  import { ref, computed } from 'vue';
   import testBellUrl from '@/assets/test_bell.wav';
   import testAlarmUrl from '@/assets/test_alarm.wav';
 
-  const DEFAULT_MINUTES = 4;
-  const WARNING_MINUTE = 2;
-  const DANGER_MINUTE = 1;
-  const TICK_INTERVAL_MS = 150;
+  const START_SECONDS = 3 * 60; 
+  const WARNING_SECONDS = 2 * 60;
+  const DANGER_SECONDS = 30;
+  const TICK_INTERVAL_MS = 250;
 
   const intervalId = ref(null);
-  const time = reactive({ seconds: 0, minutes: DEFAULT_MINUTES });
+  const remainingSeconds = ref(START_SECONDS);
 
-  const isTimesUp = computed(() => (time.seconds == 0 && time.minutes == 0));
   const formattedTime = computed(() => {
-    const min = time.minutes.toString();
-    const sec = time.seconds < 10 ? `0${time.seconds}` : time.seconds.toString();
-    return [min, sec].join(':');
-  });
+    const inMinutes = remainingSeconds.value / 60;
+    const minutes = Math.floor(inMinutes);
+    const seconds = Math.round(60 * (inMinutes - minutes));
 
-  function resetTime() {
-    time.minutes = DEFAULT_MINUTES;
-    time.seconds = 0;
-  }
+    const formattedSeconds = seconds < 10 ? `0${seconds}` : seconds;
+    return `${minutes}:${formattedSeconds}`;
+  });
 
   const bellSound = new Audio(testBellUrl);
   bellSound.volume = 0.5;
@@ -30,49 +27,9 @@
   alarmSound.volume = 0.5;
   alarmSound.loop = true;
 
-  watch(time, () => {
-    if (inWarningZone()) {
-      warningTick();
-    } else if (time.minutes <= DANGER_MINUTE) {
-      dangerTick();
-    } else {
-      regularTick();
-    }
-  });
-
-  function inWarningZone() {
-    return (time.minutes == WARNING_MINUTE && time.seconds == 0) ||
-      (time.minutes < WARNING_MINUTE && time.minutes > DANGER_MINUTE) ||
-      (time.minutes == DANGER_MINUTE && time.seconds > 0);
-  }
-
-  function warningTick() {
-    if (time.seconds % 5 == 0) bellSound.play();
-  }
-
-  function dangerTick() {
-    if (time.minutes == 0 && time.seconds == 0) {
-      timesUp();
-    } else {
-      bellSound.play();
-    }
-  }
-
-  function regularTick() {
-    if (time.seconds == 0) bellSound.play();
-  }
-
-  function timesUp() {
-    stopTick();
-    alarmSound.play();
-  }
-
-  function reset() {
-    resetTime();
-    startTick();
-
+  function restart() {
     alarmSound.pause();
-    bellSound.pause();
+    remainingSeconds.value = START_SECONDS;
   }
 
   function startTick() {
@@ -85,19 +42,44 @@
   }
 
   function toggleTick() {
+    if (remainingSeconds.value == 0) return restart();
     intervalId.value ? stopTick() : startTick();
   }
 
   function tick() {
-    if (time.seconds > 0) return time.seconds--;
+    remainingSeconds.value--;
 
-    if (time.seconds == 0 && time.minutes > 0) {
-      time.minutes--;
-      time.seconds = 59;
+    if (remainingSeconds.value > WARNING_SECONDS) {
+      regularTick();
+    } else if (remainingSeconds.value <= WARNING_SECONDS && remainingSeconds.value > DANGER_SECONDS) {
+      warningTick();
+    } else {
+      dangerTick();
     }
   }
 
-  const toggleAction = computed(() => (intervalId.value ? 'pause' : 'start' ));
+  function warningTick() {
+    if (remainingSeconds.value % 5 == 0) bellSound.play();
+  }
+
+  function dangerTick() {
+    if (remainingSeconds.value == 0) {
+      alarmSound.play();
+      stopTick();
+    } else {
+      bellSound.play();
+    }
+  }
+
+  function regularTick() {
+    if (remainingSeconds.value % 60 == 0) bellSound.play();
+  }
+
+  const toggleAction = computed(() => {
+    if (remainingSeconds.value == 0) return 'restart';
+
+    return intervalId.value ? 'pause' : 'start';
+  });
 </script>
 
 <template>
@@ -105,14 +87,12 @@
     <i class="fi fi-bs-stopwatch timer-icon"></i>
 
     <div class="display">
-      <div v-if="isTimesUp">Time is up!</div>
-      <div class="time" v-else>{{ formattedTime }}</div>
+      <div class="time">{{ formattedTime }}</div>
     </div>
 
-    <a href="#reset" v-if="isTimesUp" @click.prevent="reset">Reset</a>
-
-    <div v-else href="#toggle" class="btn" @click="toggleTick">
+    <div class="btn" @click="toggleTick">
       <i v-if="toggleAction === 'start'" class="fi fi-rr-play-circle start"></i>
+      <i v-else-if="toggleAction === 'restart'" class="fi fi-rs-rotate-left restart"></i>
       <i v-else class="fi fi-rs-pause-circle pause"></i>
     </div>
   </div>
