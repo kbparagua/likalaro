@@ -37,7 +37,8 @@
       display: flex;
       justify-content: flex-start;
       align-items: center;
-      border-top: solid 1px #34495e;
+      border-top: solid 1px var(--border-default);
+      background-color: var(--bg1);
 
       .custom {
         display: flex;

@@ -1,18 +1,18 @@
 html {
-  --bg0: #010409; 
-  --bg1: #0d1117; 
+  --bg0: #002b36;
+  --bg1: #073642; 
 
-  --text-default: #f0f6fc;
-  --text-secondary: #747b83;
+  --text-default: #93a1a1; 
+  --text-secondary: #839496; 
 
-  --highlight0: #8957e5;
-  --highlight1: #3e84dd;
+  --highlight0: #6c71c4;
+  --highlight1: #268bd2;
 
   --bg-primary: var(--bg0);
   --bg-secondary: var(--bg1);
 
   --text-highlight: var(--highlight0);
-  --border-default: #2f353d;
+  --border-default: #586e75; 
 
   --actions-standard-text: var(--text-default);
   --actions-primary-text: var(--highlight0);
