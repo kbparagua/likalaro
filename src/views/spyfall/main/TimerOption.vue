@@ -25,9 +25,10 @@
 <style scoped>
   .option {
     flex-grow: 1;
-    border: solid 1px white;
+    border: solid 1px var(--border-default);
     border-radius: 0.75rem;
     padding: 1rem;
+    background-color: var(--bg1);
 
     .icon {
       text-align: center;
@@ -46,7 +47,8 @@
     }
 
     &.selected {
-      color: var(--cold1);
+      color: var(--highlight0);
+      border-color: var(--highlight0);
     }
   }
 </style>

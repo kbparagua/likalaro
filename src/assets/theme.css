@@ -1,28 +1,19 @@
 html {
-  --bg0: #073642;
-  --bg1: #002b36;
+  --bg0: #010409; 
+  --bg1: #0d1117; 
 
-  --text0: #93a1a1;
-  --text1: #839496;
-  --text2: #586e75;
-  --text3: #657b83;
+  --text-default: #f0f6fc;
+  --text-secondary: #747b83;
 
-  --warm0: #b58900;
-  --warm1: #cb4b16;
-  --warm2: #dc322f;
-  --warm3: #d33682;
-
-  --cold0: #6c71c4;
-  --cold1: #268bd2;
-  --cold2: #2aa198;
-  --cold3: #859900;
+  --highlight0: #8957e5;
+  --highlight1: #3e84dd;
 
   --bg-primary: var(--bg0);
   --bg-secondary: var(--bg1);
 
-  --text-default: var(--text0);
-  --text-highlight: var(--cold0);
+  --text-highlight: var(--highlight0);
+  --border-default: #2f353d;
 
-  --actions-standard-text: var(--cold0);
-  --actions-primary-text: var(--cold1);
+  --actions-standard-text: var(--text-default);
+  --actions-primary-text: var(--highlight0);
 }
