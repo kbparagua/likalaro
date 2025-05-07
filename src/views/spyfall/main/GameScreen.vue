@@ -58,7 +58,7 @@
       <div class="screen">
         <div class="top-bar">
           <span class="player">{{ player }}</span>
-          <span class="round">#{{ gameNumber }}</span>
+          <span class="round">round #{{ gameNumber }}</span>
         </div>
 
         <div>
@@ -93,11 +93,13 @@
   .top-bar {
     display: flex;
     justify-content: space-between;
-    background-color: #8e44ad;
+    background-color: var(--bg-secondary);
     margin-top: -24px;
     margin-left: -24px;
     margin-right: -24px;
     padding: 0.5rem;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
   }
 
   .icon {

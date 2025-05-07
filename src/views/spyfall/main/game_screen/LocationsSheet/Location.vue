@@ -83,13 +83,13 @@
     border-color: transparent;
 
     &.strike .display {
-      color: var(--text3);
+      color: var(--text-secondary);
       text-decoration: line-through;
       font-style: italic;
     }
 
     &.highlight .display {
-      color: var(--cold0);
+      color: var(--highlight0);
     }
 
     .actionable {
@@ -102,7 +102,7 @@
 
       border-style: solid;
       border-width: 1px;
-      border-color: var(--cold1);
+      border-color: var(--highlight1);
       border-left-width: 0;
       border-right-width: 0;
 
@@ -148,11 +148,11 @@
       padding: 1.5rem;
 
       &.highlight {
-        color: var(--cold0);
+        color: var(--highlight0);
       }
 
       &.strike {
-        color: var(--warm1);
+        color: var(--highlight-danger);
       }
     }
   }

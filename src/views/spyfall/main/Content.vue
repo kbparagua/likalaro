@@ -38,7 +38,7 @@
       justify-content: flex-start;
       align-items: center;
       border-top: solid 1px var(--border-default);
-      background-color: var(--bg1);
+      background-color: var(--bg-primary);
 
       .custom {
         display: flex;

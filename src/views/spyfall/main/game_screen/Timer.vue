@@ -130,11 +130,11 @@
     font-size: 3rem;
 
     .start {
-      color: var(--cold2);
+      color: var(--highlight0);
     }
 
     .pause {
-      color: var(--warm2);
+      color: var(--highlight-danger);
     }
   }
 </style>
