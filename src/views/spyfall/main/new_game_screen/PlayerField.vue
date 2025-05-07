@@ -3,11 +3,12 @@ import { ref, watch } from "vue";
 
 const props = defineProps({
   label: String,
+  name: String,
   removeable: { type: Boolean, default: true }
 });
 
 const emit = defineEmits(["change", "remove"]);
-const value = ref("");
+const value = ref(props.name);
 
 watch(value, (newValue) => {
   emit("change", newValue);

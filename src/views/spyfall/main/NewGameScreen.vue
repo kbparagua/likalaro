@@ -6,6 +6,7 @@ import { MIN_PLAYERS, MAX_PLAYERS } from '@/lib/SpyFall';
 import PlayerField from "./new_game_screen/PlayerField.vue";
 import Action from '@/views/core/Action.vue';
 import Content from './Content.vue';
+import Storage from '@/lib/Storage';
 
 const router = useRouter();
 
@@ -26,7 +27,8 @@ function buildInitalPlayers() {
   return list;
 };
 
-const players = reactive(buildInitalPlayers());
+const players = reactive(JSON.parse(Storage.get('players')) || buildInitalPlayers());
+console.log(players);
 
 const canAddPlayer = computed(() => players.length < MAX_PLAYERS);
 const missingPlayers = computed(() => {
@@ -98,15 +100,17 @@ function removePlayer(index) {
   players.splice(index, 1);
 };
 
-function create() {
+function savePlayers() {
   if (!isValidGame.value) {
     console.log("Invalid Game!");
     return false;
   }
-  
-  const seed = Math.round((new Date()).getTime() * Math.random()).toString();
-  const playerNames = players.map((p) => p.name);
-  router.push({ path: 'lobby', query: { players: playerNames, seed } });
+
+  Storage.set('players', JSON.stringify(players));
+  router.push({ path: 'set_timer' });
+  // const seed = Math.round((new Date()).getTime() * Math.random()).toString();
+  // const playerNames = players.map((p) => p.name);
+  // router.push({ path: 'lobby', query: { players: playerNames, seed } });
 }
 </script>
 
@@ -122,6 +126,7 @@ function create() {
         <template v-for="(player, i) in players" :key="player.id">
           <PlayerField
             :label="buildLabel(i)"
+            :name="player.name"
             :removeable="isRemoveable(i)"
             @change="(value) => setPlayer(i, value)"
             @remove="removePlayer(i)">
@@ -138,10 +143,9 @@ function create() {
 
     <template v-slot:actions>
       <Action
-        icon="ok"
+        icon="forward"
         :disabled="!isValidGame"
-        @click="create"
-        confirm="Create game?"></Action>
+        @click="savePlayers"></Action>
     </template>
   </Content>
 </template>

@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 
 import Spyfall from '@/views/spyfall/Main.vue'
 import SpyfallNewGameScreen from '@/views/spyfall/main/NewGameScreen.vue';
+import SpyfallSetTimer from '@/views/spyfall/main/SetTimer.vue';
 import SpyfallLobby from '@/views/spyfall/main/Lobby.vue';
 import SpyfallGameScreen from '@/views/spyfall/main/GameScreen.vue';
 
@@ -22,6 +23,10 @@ const router = createRouter({
         {
           path: 'new',
           component: SpyfallNewGameScreen
+        },
+        {
+          path: 'set_timer',
+          component: SpyfallSetTimer
         },
         {
           path: 'lobby',
