@@ -1,20 +1,24 @@
 <script setup>
+  defineEmits(['select']);
   const props = defineProps({
-    seconds: Number,
-    text: String
+    minutes: Number,
+    text: String,
+    selected: {
+      type: Boolean,
+      default: false
+    }
   });
 
-
-  const time = props.seconds;
+  const time = props.minutes == 0 ? 'No timer' : `${props.minutes} mins`;
 </script>
 
 <template>
-  <div class="option">
+  <div class="option" :class="{ selected }" @click="$emit('select')">
     <div class="icon">
       <slot></slot>
     </div>
     <div class="label">{{ text }}</div>
-    <div class="time">{{ time }} mins</div>
+    <div class="time">{{ time }}</div>
   </div>
 </template>
 
@@ -39,6 +43,10 @@
     .time {
       font-size: 1.5rem;
       text-align: center;
+    }
+
+    &.selected {
+      color: var(--cold1);
     }
   }
 </style>

@@ -3,7 +3,9 @@
   import testBellUrl from '@/assets/test_bell.wav';
   import testAlarmUrl from '@/assets/test_alarm.wav';
 
-  const START_SECONDS = 3 * 60; 
+  const props = defineProps({ seconds: { type: Number }});
+
+  const START_SECONDS = props.seconds;
   const WARNING_SECONDS = 2 * 60;
   const DANGER_SECONDS = 30;
   const TICK_INTERVAL_MS = 250;

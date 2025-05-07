@@ -15,6 +15,7 @@
   const index = route.query.index;
   const gameNumber = parseInt(route.query.gameNumber || 1);
   const numberOfPlayers = route.query.numberOfPlayers;
+  const seconds = parseInt(route.query.seconds);
   const isHost = index == 0;
 
   const spyfall = new SpyFall({ seed, numberOfPlayers });
@@ -66,7 +67,7 @@
           <div class="role">{{ role  }}</div>
         </div>
 
-        <Timer v-if="isHost"></Timer>
+        <Timer v-if="isHost && seconds > 0" :seconds="seconds"></Timer>
       </div>
 
       <Window :is-open="locationsSheet.visible" @close="hideLocations">

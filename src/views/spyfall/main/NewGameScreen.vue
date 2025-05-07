@@ -108,9 +108,6 @@ function savePlayers() {
 
   Storage.set('players', JSON.stringify(players));
   router.push({ path: 'set_timer' });
-  // const seed = Math.round((new Date()).getTime() * Math.random()).toString();
-  // const playerNames = players.map((p) => p.name);
-  // router.push({ path: 'lobby', query: { players: playerNames, seed } });
 }
 </script>
 

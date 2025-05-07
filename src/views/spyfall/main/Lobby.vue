@@ -8,7 +8,7 @@
   const router = useRouter();
   const route = useRoute();
 
-  const { players, seed } = route.query;
+  const { players, seed, seconds } = route.query;
   const host = players.shift();
   const numberOfPlayers = players.length + 1;
   const currentShownPlayerIndex = ref(0);
@@ -20,6 +20,7 @@
       seed,
       index,
       player,
+      seconds,
       numberOfPlayers
     };
 
@@ -32,7 +33,7 @@
   const joinUrls = players.map((player, i) => generateJoinUrl({ index: i + 1, player }));
 
   function start() {
-    router.push({ path: '/spyfall/game', query: { seed, numberOfPlayers, index: 0, player: host} });
+    router.push({ path: '/spyfall/game', query: { seed, numberOfPlayers, seconds, index: 0, player: host }});
   }
 
   function prevPlayer() {
