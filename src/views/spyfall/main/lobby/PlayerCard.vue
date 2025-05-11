@@ -38,9 +38,7 @@
 <template>
   <div class="card">
     <div class="player-name">{{ name }}</div>
-    <div>
-      <img class="qr-code" :src="qr"></img>
-    </div>
+    <img class="qr-code" :src="qr"></img>
 
     <div>or</div>
     <div class="copy-to-clipboard" :class="{ [clipboardClass]: true, copied: copied }" :data-clipboard-text="url">
@@ -59,12 +57,18 @@
     flex-direction: column;
     align-items: center;
 
-    width: 100vw;
-    padding: 12px;
+    width: 100%;
+    padding: 2rem;
+
+    .player-name {
+      font-size: 1.5rem;
+      font-weight: bold;
+      width: 100%;
+    }
   }
 
   .qr-code {
-    width: 90vw;
+    width: 100%;
   }
 
   .copy-to-clipboard {
@@ -72,8 +76,10 @@
     align-items: center;
     gap: 0.5rem;
     font-size: 1.5rem;
-    background-color: white;
-    color: #8e44ad;
+    border: solid 1px var(--highlight0);
+    background-color: var(--highlight0);
+    /* color: var(--highlight0); */
+    color: var(--bg0);
     padding: 1.5rem 1.25rem;
     border-radius: 0.75rem;
     font-weight: bold;

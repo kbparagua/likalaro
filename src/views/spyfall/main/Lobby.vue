@@ -66,11 +66,11 @@
     <template v-slot:main>
       <div>Scan to join</div>
       <div class="player-list-container" ref="player-list">
-        <ul class="player-list">
-          <li class="player-card-container" v-for="(player, i) in players">
+        <div class="player-list">
+          <div class="player-card-container" v-for="(player, i) in players">
             <PlayerCard :url="joinUrls[i]" :name="player"></PlayerCard>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
 
       <div>Host: {{  host  }}</div>
@@ -92,15 +92,17 @@
 
 <style scoped>
   .player-list-container {
-    width: 100%;
+    width: 100vw;
     overflow-x: hidden;
+    margin-left: -2rem;
   }
 
   .player-list {
-    padding: 0;
-    margin: 0;
-    list-style: none;
     display: flex;
-    margin-left: -24px;
+    width: calc(100vw * 7);
+
+    .player-card-container {
+      width: 100vw;
+    }
   }
 </style>
