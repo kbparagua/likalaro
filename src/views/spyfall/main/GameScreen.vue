@@ -1,12 +1,13 @@
 <script setup>
-  import { reactive } from 'vue';
-  import { useRoute, useRouter } from 'vue-router';
+  import { ref, reactive } from 'vue';
+  import { useRoute, useRouter, onBeforeRouteLeave } from 'vue-router';
   import SpyFall, { LOCATIONS } from '@/lib/SpyFall';
   import Timer from './game_screen/Timer.vue';
   import Content from './Content.vue';
   import Action from '@/views/core/Action.vue';
   import Window from '@/views/core/Window.vue';
   import LocationsSheet from './game_screen/LocationsSheet.vue';
+  import Confirm from '@/views/core/Confirm.vue';
 
   const router = useRouter();
   const route = useRoute();
@@ -23,11 +24,33 @@
   const icon = spyfall.icon(index);
   const role = spyfall.role(index);
 
+  let allowBack = false;
+
   const locationsSheet = reactive({
     visible: false,
     show() { this.visible = true; },
     hide() { this.visible = false; }
   });
+  
+  const confirmExitGame = ref(false);
+
+  onBeforeRouteLeave(() => {
+    if (allowBack) return true;
+
+    console.log('before leave');
+    confirmExitGame.value = true;
+    return false;
+  });
+
+  function exitGame() {
+    allowBack = true; 
+    router.replace('/');
+  }
+
+  function cancelExitGame() {
+    allowBack = false;
+    confirmExitGame.value = false;
+  }
 
   function nextGame() {
     const nextSeed = spyfall.nextSeed();
@@ -73,6 +96,8 @@
       <Window :is-open="locationsSheet.visible" @close="hideLocations">
         <LocationsSheet :locations="LOCATIONS"></LocationsSheet>
       </Window>
+
+      <Confirm :visible="confirmExitGame" message="Exit the game?" @yes="exitGame" @no="cancelExitGame"/>
     </template>
 
     <template v-slot:actions>
