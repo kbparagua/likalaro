@@ -28,17 +28,7 @@ function buildInitalPlayers() {
 };
 
 const players = reactive(JSON.parse(Storage.get('players')) || buildInitalPlayers());
-console.log(players);
-
 const canAddPlayer = computed(() => players.length < MAX_PLAYERS);
-const missingPlayers = computed(() => {
-  const count = MIN_PLAYERS - players.length;
-  return {
-    count,
-    playersString: count > 1 ? 'players' : 'player'
-  }
-});
-
 const instruction = computed(() => {
   const missingPlayers = MIN_PLAYERS - players.length;
   if (missingPlayers > 0) {
@@ -50,10 +40,6 @@ const instruction = computed(() => {
 
   return null;
 });
-
-watch(players, (newValue) => {
-  console.log(players);
-})
 
 function isValidPlayer(player) {
   return player.name.trim() != "";
