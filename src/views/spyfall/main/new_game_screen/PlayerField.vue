@@ -14,6 +14,10 @@ watch(value, (newValue) => {
   emit("change", newValue);
 });
 
+function focus(e) {
+  e.currentTarget.select();
+}
+
 </script>
 
 <template>
@@ -22,7 +26,15 @@ watch(value, (newValue) => {
       <i class="fi fi-ss-user"></i>
     </span>
 
-    <input type="text" size="1" :placeholder="label" :name="label" v-model="value" />
+    <input
+      type="text"
+      size="1"
+      autocomplete="off"
+      class="player-name"
+      :placeholder="label"
+      :name="label"
+      v-model="value"
+      @focus="focus" />
 
     <span class="remove-container">
       <span class="remove" v-if="removeable" @click="$emit('remove')">
@@ -47,19 +59,21 @@ watch(value, (newValue) => {
       font-size: 1.5rem;
     }
 
-    input {
+    input.player-name  {
       border-radius: 0.5rem;
       padding: 0.75rem 0.5rem;
-      border: solid 1px transparent;
+      border-width: 0;
+      outline: none;
       font-size: 1.25rem;
       background-color: var(--bg0);
+      color: var(--default-text);
 
       min-width: 70%;
       flex-grow: 2;
 
       &:focus {
         outline: none;
-        border: solid 1px var(--cold0);
+        border-width: 0;
       }
     }
 
