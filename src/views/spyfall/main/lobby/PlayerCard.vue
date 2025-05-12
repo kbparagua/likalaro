@@ -37,6 +37,7 @@
 
 <template>
   <div class="card">
+    <div class="scan-instruction">Scan to join</div>
     <div class="player-name">{{ name }}</div>
     <img class="qr-code" :src="qr"></img>
 
@@ -44,8 +45,8 @@
     <div class="copy-to-clipboard" :class="{ [clipboardClass]: true, copied: copied }" :data-clipboard-text="url">
       <span v-if="copied">Copied</span>
       <template v-else>
-        <i class="fi fi-rs-paper-plane"></i>
-        <span>share link</span>
+        <i class="fi fi-rr-copy-alt"></i>
+        <span>Copy link to join</span>
       </template>
    </div>
   </div>
@@ -60,33 +61,44 @@
     width: 100%;
     padding: 2rem;
 
-    .player-name {
-      font-size: 1.5rem;
-      font-weight: bold;
-      width: 100%;
-    }
-  }
+    font-size: 2rem;
 
-  .qr-code {
-    width: 100%;
+    .scan-instruction {
+      font-weight: bold;
+    }
+
+    .player-name {
+      font-size: 2rem;
+      width: 100%;
+      padding: 0.75rem;
+      background-color: var(--highlight0);
+      color: var(--bg0);
+      border-radius: 0.5rem 0.5rem 0 0;
+      margin-top: 1.5rem;
+    }
+
+    .qr-code {
+      width: 100%;
+      margin-bottom: 1.5rem;
+    }
   }
 
   .copy-to-clipboard {
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 0.5rem;
     font-size: 1.5rem;
-    border: solid 1px var(--highlight0);
-    background-color: var(--highlight0);
-    /* color: var(--highlight0); */
+    width: 100%;
+    margin-top: 1.5rem;
+    background-color: var(--text-default);
     color: var(--bg0);
     padding: 1.5rem 1.25rem;
-    border-radius: 0.75rem;
+    border-radius: 0.5rem;
     font-weight: bold;
     
     &.copied {
-      background-color: #8e44ad;
-      color: white;
+      background-color: var(--highlight0);
     }
   }
 

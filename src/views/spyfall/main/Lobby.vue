@@ -4,6 +4,7 @@
   import PlayerCard from './lobby/PlayerCard.vue';
   import Content from './Content.vue';
   import Action from '@/views/core/Action.vue';
+  import RoomGenerator from '@/lib/RoomGenerator';
 
   const router = useRouter();
   const route = useRoute();
@@ -12,6 +13,7 @@
   const host = players.shift();
   const numberOfPlayers = players.length + 1;
   const currentShownPlayerIndex = ref(0);
+  const room = RoomGenerator.generate(seed);
 
   const playerList = useTemplateRef("player-list");
 
@@ -64,7 +66,12 @@
 <template>
   <Content>
     <template v-slot:main>
-      <div>Scan to join</div>
+      <h1 class="room">
+        <i class="fi fi-bs-door-closed"></i>
+        <span class="name">{{ room }}</span>
+      </h1>
+      <div class="host-details">Host: {{  host  }}</div>
+
       <div class="player-list-container" ref="player-list">
         <div class="player-list">
           <div class="player-card-container" v-for="(player, i) in players">
@@ -73,7 +80,6 @@
         </div>
       </div>
 
-      <div>Host: {{  host  }}</div>
     </template>
 
     <template v-slot:actions>
@@ -91,10 +97,36 @@
 </template>
 
 <style scoped>
+  h1.room {
+    display: flex;
+    gap: 1rem;
+
+    background-color: var(--bg1);
+    border-radius: 0.5rem;
+
+    i.fi {
+      border-right: solid 1px var(--border-default);
+      padding: 1rem;
+    }
+
+    .name {
+      padding: 1rem;
+      color: var(--highlight1);
+      font-weight: semi-bold;
+      text-align: center;
+    }
+  }
+
+  .host-details {
+    font-size: 1.25rem;
+    color: var(--text-secondary);
+  }
+
   .player-list-container {
     width: 100vw;
     overflow-x: hidden;
     margin-left: -2rem;
+    margin-top: 2rem;
   }
 
   .player-list {

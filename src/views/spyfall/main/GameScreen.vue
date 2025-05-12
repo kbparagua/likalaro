@@ -8,6 +8,7 @@
   import Window from '@/views/core/Window.vue';
   import LocationsSheet from './game_screen/LocationsSheet.vue';
   import Confirm from '@/views/core/Confirm.vue';
+  import RoomGenerator from '@/lib/RoomGenerator';
 
   const router = useRouter();
   const route = useRoute();
@@ -18,6 +19,7 @@
   const numberOfPlayers = route.query.numberOfPlayers;
   const seconds = parseInt(route.query.seconds);
   const isHost = index == 0;
+  const roomName = RoomGenerator.generate(seed);
 
   const spyfall = new SpyFall({ seed, numberOfPlayers });
   const location = spyfall.location(index);
