@@ -33,3 +33,11 @@ body {
 i.fi::before {
   display: block;
 }
+
+a {
+  text-decoration: none;
+  color: unset;
+
+  &:visited { color: unset; }
+  &:hover { color: unset; }
+}
