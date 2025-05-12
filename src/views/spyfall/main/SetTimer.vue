@@ -72,7 +72,7 @@
 
     <template v-slot:actions>
       <Action icon="back" :back="true" />
-      <Action icon="ok" confirm="Create game?" @click="createGame" />
+      <Action icon="ok" confirm="Create room?" @click="createGame" />
     </template>
   </Content>
 </template>

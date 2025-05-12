@@ -33,7 +33,7 @@ const instruction = computed(() => {
   const missingPlayers = MIN_PLAYERS - players.length;
   if (missingPlayers > 0) {
     const playersString = missingPlayers > 1 ? 'players' : 'player';
-    return `Add ${missingPlayers} more ${playersString} to create a game.`;
+    return `Add ${missingPlayers} more ${playersString} to create a room.`;
   }
 
   if (MAX_PLAYERS == players.length) return "You've reached the player limit.";
