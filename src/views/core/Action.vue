@@ -72,7 +72,7 @@
     padding: 1.75rem;
 
     &.disabled {
-      color: #7f8c8d;
+      opacity: 0.3;
     }
   }
 </style>
