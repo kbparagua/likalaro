@@ -9,6 +9,7 @@
   import LocationsSheet from './game_screen/LocationsSheet.vue';
   import Confirm from '@/views/core/Confirm.vue';
   import RoomGenerator from '@/lib/RoomGenerator';
+  import GameDetails from './GameDetails.vue';
 
   const router = useRouter();
   const route = useRoute();
@@ -19,7 +20,7 @@
   const numberOfPlayers = route.query.numberOfPlayers;
   const seconds = parseInt(route.query.seconds);
   const isHost = index == 0;
-  const roomName = RoomGenerator.generate(seed);
+  const room = RoomGenerator.generate(seed);
 
   const spyfall = new SpyFall({ seed, numberOfPlayers });
   const location = spyfall.location(index);
@@ -81,11 +82,7 @@
   <Content>
     <template v-slot:main>
       <div class="screen">
-        <div class="top-bar">
-          <span class="player">{{ player }}</span>
-          <span class="round">round #{{ gameNumber }}</span>
-        </div>
-
+        <GameDetails :room="room" />
         <div>
           <div class="icon">{{ icon }}</div>
           <div class="location">{{ location }}</div>
