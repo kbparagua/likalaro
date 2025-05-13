@@ -61,25 +61,27 @@
     width: 100%;
     padding: 2rem;
 
-    font-size: 2rem;
+    font-size: 1.75rem;
 
     .scan-instruction {
       font-weight: bold;
     }
 
     .player-name {
-      font-size: 2rem;
-      width: 100%;
-      padding: 0.75rem;
+      font-size: 1.5rem;
+      width: 60%;
+      padding: 0.5rem;
       background-color: var(--highlight0);
       color: var(--bg0);
       border-radius: 0.5rem 0.5rem 0 0;
       margin-top: 1.5rem;
+      text-align: center;
     }
 
     .qr-code {
-      width: 100%;
+      width: 60%;
       margin-bottom: 1.5rem;
+      border-radius: 0 0 0.5rem 0.5rem;
     }
   }
 
@@ -88,12 +90,12 @@
     align-items: center;
     justify-content: center;
     gap: 0.5rem;
-    font-size: 1.5rem;
-    width: 100%;
+    font-size: 1.25rem;
+    width: 60%;
     margin-top: 1.5rem;
     background-color: var(--text-default);
     color: var(--bg0);
-    padding: 1.5rem 1.25rem;
+    padding: 1.25rem 1rem;
     border-radius: 0.5rem;
     font-weight: bold;
     
