@@ -1,17 +1,25 @@
 <script setup>
   const props = defineProps({
     room: { type: String, default: 'Invalid' },
-    host: { type: String, default: 'Unknown Player' }
+    player: { type: String, default: 'Unknown' },
+    rounds: { type: Number, default: 0 }
   });
 </script>
 
 <template>
   <section>
+    <div class="top-bar">
+      <div class="player">
+        <i class="fi fi-ss-user"></i>{{  player  }}
+      </div>
+      <div v-if="rounds > 0" class="rounds">
+        <i class="fi fi-tr-bullseye"></i>{{ rounds }}
+      </div>
+    </div>
     <div class="room">
       <i class="fi fi-bs-door-closed"></i>
       <span class="name">{{ room }}</span>
     </div>
-    <div class="host-details">Host: {{  host  }}</div>
   </section>
 </template>
 
@@ -32,22 +40,35 @@
 
     i.fi {
       border-right: solid 1px var(--border-default);
-      padding: 1rem;
-      font-size: 1.75rem;
+      padding: 0.75rem;
+      font-size: 1.5rem;
     }
 
     .name {
-      padding: 1rem;
+      padding: 0.75rem;
       color: var(--highlight1);
       font-weight: bold;
       text-align: center;
-      font-size: 2rem;
+      font-size: 1.5rem;
       flex-grow: 1;
     }
   }
 
-  .host-details {
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
     font-size: 1.25rem;
     color: var(--text-secondary);
+
+    .player {
+      display: flex;
+      gap: 0.5rem;
+    }
+
+    .rounds {
+      display: flex;
+      gap: 0.5rem;
+    }
   }
 </style>

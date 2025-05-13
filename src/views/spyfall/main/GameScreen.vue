@@ -82,7 +82,7 @@
   <Content>
     <template v-slot:main>
       <div class="screen">
-        <GameDetails :room="room" />
+        <GameDetails :room="room" :player="player" :rounds="gameNumber" />
         <div>
           <div class="icon">{{ icon }}</div>
           <div class="location">{{ location }}</div>
