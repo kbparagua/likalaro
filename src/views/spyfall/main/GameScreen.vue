@@ -63,7 +63,8 @@
         round: round + 1,
         numberOfPlayers,
         index,
-        player
+        player,
+        seconds
       }
     });
   }
@@ -82,7 +83,8 @@
     <template v-slot:main>
       <div class="screen">
         <GameDetails :room="room" :player="player" :rounds="round" />
-        <div>
+
+        <div class="card">
           <div class="icon">{{ icon }}</div>
           <div class="location">{{ location }}</div>
           <div class="role">{{ role  }}</div>
@@ -125,25 +127,32 @@
     color: var(--text-secondary);
   }
 
-  .icon {
+  .card {
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    font-size: 5rem;
-    margin-bottom: 1rem;
-  }
+    height: 100%;
 
-  .location {
-    font-size: 3rem;
-    text-align: center;
-    margin-bottom: 0.5rem;
-    color: var(--text-highlight);
-  }
+    .icon {
+      display: flex;
+      justify-content: center;
+      font-size: 5rem;
+      margin-bottom: 1rem;
+    }
 
-  .role {
-    font-size: 1rem;
-    text-align: center;
-    background-color: var(--bg-secondary);
-    padding: 0.5rem;
-    border-radius: 0.5rem;
+    .location {
+      font-size: 3rem;
+      text-align: center;
+      margin-bottom: 0.5rem;
+      color: var(--text-highlight);
+    }
+
+    .role {
+      font-size: 1rem;
+      text-align: center;
+      background-color: var(--bg-secondary);
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+    }
   }
 </style>
