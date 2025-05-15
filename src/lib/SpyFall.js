@@ -272,13 +272,9 @@ export const MIN_PLAYERS = 3;
 export const MAX_PLAYERS = 8;
 
 export default class {
-  constructor({ seed, numberOfPlayers }) {
-    this.randomizer = new Randomizer(seed);
+  constructor({ seed, round, numberOfPlayers }) {
+    this.randomizer = new Randomizer(`${round}${seed}`);
     this.numberOfPlayers = numberOfPlayers;
-  }
-
-  nextSeed() {
-    return this.randomizer.nextSeed;
   }
 
   icon(index) {

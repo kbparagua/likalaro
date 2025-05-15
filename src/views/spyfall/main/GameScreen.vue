@@ -16,13 +16,13 @@
   const seed = route.query.seed;
   const player = route.query.player;
   const index = route.query.index;
-  const gameNumber = parseInt(route.query.gameNumber || 1);
+  const round = parseInt(route.query.round || 1);
   const numberOfPlayers = route.query.numberOfPlayers;
   const seconds = parseInt(route.query.seconds);
   const isHost = index == 0;
   const room = RoomGenerator.generate(seed);
 
-  const spyfall = new SpyFall({ seed, numberOfPlayers });
+  const spyfall = new SpyFall({ seed, round, numberOfPlayers });
   const location = spyfall.location(index);
   const icon = spyfall.icon(index);
   const role = spyfall.role(index);
@@ -56,12 +56,11 @@
   }
 
   function nextGame() {
-    const nextSeed = spyfall.nextSeed();
     router.push({
       path: '/spyfall/game',
       query: {
-        seed: nextSeed,
-        gameNumber: gameNumber + 1,
+        seed,
+        round: round + 1,
         numberOfPlayers,
         index,
         player
@@ -82,7 +81,7 @@
   <Content>
     <template v-slot:main>
       <div class="screen">
-        <GameDetails :room="room" :player="player" :rounds="gameNumber" />
+        <GameDetails :room="room" :player="player" :rounds="round" />
         <div>
           <div class="icon">{{ icon }}</div>
           <div class="location">{{ location }}</div>
