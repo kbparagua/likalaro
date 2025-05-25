@@ -67,7 +67,7 @@
 <template>
   <Content>
     <template v-slot:main>
-      <GameDetails :room="room" :host="host"/>
+      <GameDetails :room="room" :player="host"/>
       <div class="player-list-container" ref="player-list">
         <div class="player-list">
           <div class="player-card-container" v-for="(player, i) in players">
