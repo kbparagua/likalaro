@@ -29,7 +29,6 @@
   @keyframes exit {
     0% {
       transform: translateX(0);
-      border: solid 4px var(--highlight0);
     }
 
     25% {
