@@ -10,6 +10,7 @@
   import Confirm from '@/views/core/Confirm.vue';
   import RoomGenerator from '@/lib/RoomGenerator';
   import GameDetails from './GameDetails.vue';
+  import EnterRoom from './game_screen/EnterRoom.vue';
 
   const router = useRouter();
   const route = useRoute();
@@ -96,6 +97,8 @@
       <Window :is-open="locationsSheet.visible" @close="hideLocations">
         <LocationsSheet :locations="LOCATIONS"></LocationsSheet>
       </Window>
+
+      <EnterRoom :room="room" />
 
       <Confirm :visible="confirmExitGame" message="Exit the game?" @yes="exitGame" @no="cancelExitGame"/>
     </template>
