@@ -98,7 +98,7 @@
         <LocationsSheet :locations="LOCATIONS"></LocationsSheet>
       </Window>
 
-      <EnterRoom :room="room" />
+      <EnterRoom v-if="!isHost" :room="room" />
 
       <Confirm :visible="confirmExitGame" message="Exit the game?" @yes="exitGame" @no="cancelExitGame"/>
     </template>
