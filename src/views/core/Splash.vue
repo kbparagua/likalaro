@@ -12,7 +12,7 @@
   const hidden = ref(false);
 
   function hideMe(e) {
-    if (e.animationName == 'zoom-in') {
+    if (e.animationName == 'exit') {
       hidden.value = true;
       emit('hide');
     }
@@ -26,13 +26,18 @@
 </template>
 
 <style>
-  @keyframes zoom-in {
+  @keyframes exit {
     0% {
-      transform: scale(0);
+      transform: translateX(0);
+      border: solid 4px var(--highlight0);
+    }
+
+    25% {
+      transform: translateX(24px);
     }
     
     100% {
-      transform: scale(40);
+      transform: translateX(-100vw);
     }
   }
 </style>
@@ -49,9 +54,9 @@
     background-color: var(--bg0);
 
     &.hiding {
-      animation-name: zoom-in;
+      animation-name: exit;
       animation-duration: 500ms;
-      animation-timing-function: ease-out;
+      animation-timing-function: ease-in-out;
 
       overflow: hidden;
     }

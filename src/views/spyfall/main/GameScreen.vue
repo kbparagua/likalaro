@@ -86,41 +86,53 @@
     showEnterRoom.value = false;
     showRoundSplash.value = true;
   }
+
+  function hideRoundSplash() {
+    showRoundSplash.value = false;
+  }
 </script>
 
 <template>
-  <Content>
-    <template v-slot:main>
-      <div class="screen">
-        <GameDetails :room="room" :player="player" :rounds="round" />
+  <div class="game">
+    <Content v-if="!showEnterRoom && !showRoundSplash">
+      <template v-slot:main>
+        <div class="screen">
+          <GameDetails :room="room" :player="player" :rounds="round" />
 
-        <div class="card">
-          <div class="icon">{{ icon }}</div>
-          <div class="location">{{ location }}</div>
-          <div class="role">{{ role  }}</div>
+          <div class="card">
+            <div class="icon">{{ icon }}</div>
+            <div class="location">{{ location }}</div>
+            <div class="role">{{ role  }}</div>
+          </div>
+
+          <Timer v-if="isHost && seconds > 0" :seconds="seconds"></Timer>
         </div>
 
-        <Timer v-if="isHost && seconds > 0" :seconds="seconds"></Timer>
-      </div>
+        <Window :is-open="locationsSheet.visible" @close="hideLocations">
+          <LocationsSheet :locations="LOCATIONS"></LocationsSheet>
+        </Window>
 
-      <Window :is-open="locationsSheet.visible" @close="hideLocations">
-        <LocationsSheet :locations="LOCATIONS"></LocationsSheet>
-      </Window>
+        <Confirm :visible="confirmExitGame" message="Exit the game?" @yes="exitGame" @no="cancelExitGame"/>
+      </template>
 
-      <EnterRoom v-if="showEnterRoom" :room="room" @close="hideEnterRoom" />
-      <RoundSplash v-if="showRoundSplash" :round="round" />
+      <template v-slot:actions>
+        <Action icon="location" @click="showLocations" /> 
+        <Action icon="forward" @click="nextGame" confirm="Go to next round?" />
+      </template>
 
-      <Confirm :visible="confirmExitGame" message="Exit the game?" @yes="exitGame" @no="cancelExitGame"/>
-    </template>
+    </Content>
 
-    <template v-slot:actions>
-      <Action icon="location" @click="showLocations" /> 
-      <Action icon="forward" @click="nextGame" confirm="Go to next round?" />
-    </template>
-  </Content>
+    <EnterRoom v-if="showEnterRoom" :room="room" @close="hideEnterRoom" />
+    <RoundSplash v-if="showRoundSplash" :round="round" @close="hideRoundSplash" />
+  </div>
 </template>
 
 <style scoped>
+  .game {
+    width: 100%;
+    height: 100%;
+  }
+
   .screen {
     display: flex;
     flex-direction: column;

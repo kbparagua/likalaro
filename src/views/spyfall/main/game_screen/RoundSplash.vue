@@ -9,6 +9,7 @@
     }
   });
 
+  defineEmits(['close']);
   const hiding = ref(false);
 
   onMounted(() => {
@@ -19,7 +20,7 @@
 </script>
 
 <template>
-  <Splash :hiding="hiding">
+  <Splash :hiding="hiding" @hide="$emit('close')">
     <section>
       <span class="round">Round #{{ round }}</span>
     </section>
@@ -50,7 +51,7 @@
     border-right: none;
     
     animation-name: zoom;
-    animation-duration: 1s;
+    animation-duration: 750ms;
   }
 
   @keyframes zoom {
