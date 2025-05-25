@@ -8,7 +8,7 @@
   const START_SECONDS = props.seconds;
   const WARNING_SECONDS = 2 * 60;
   const DANGER_SECONDS = 30;
-  const TICK_INTERVAL_MS = 250;
+  const TICK_INTERVAL_MS = 1000;
 
   const intervalId = ref(null);
   const remainingSeconds = ref(START_SECONDS);
