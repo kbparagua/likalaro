@@ -22,6 +22,7 @@
   const seconds = parseInt(route.query.seconds);
   const isHost = index == 0;
   const room = RoomGenerator.generate(seed);
+  const showEnterRoom = ref(!isHost);
 
   const spyfall = new SpyFall({ seed, round, numberOfPlayers });
   const location = spyfall.location(index);
@@ -77,6 +78,10 @@
   function hideLocations() {
     locationsSheet.hide();
   }
+
+  function hideEnterRoom() {
+    showEnterRoom.value = false;
+  }
 </script>
 
 <template>
@@ -98,7 +103,7 @@
         <LocationsSheet :locations="LOCATIONS"></LocationsSheet>
       </Window>
 
-      <EnterRoom v-if="!isHost" :room="room" />
+      <EnterRoom v-if="showEnterRoom" :room="room" @close="hideEnterRoom" />
 
       <Confirm :visible="confirmExitGame" message="Exit the game?" @yes="exitGame" @no="cancelExitGame"/>
     </template>

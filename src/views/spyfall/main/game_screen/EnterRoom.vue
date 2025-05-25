@@ -1,16 +1,27 @@
 <script setup>
+  import { ref } from 'vue';
   import Splash from '@/views/core/Splash.vue';
 
   const props = defineProps({ room: String });
+  const emit = defineEmits(['close']);
+
+  const closing = ref(false);
+  const hidden = ref(false);
 
   function enter() {
-    alert('enter');
+    closing.value = true;
+  }
+
+  function hide() {
+    closing.value = false;
+    hidden.value = true;
+    emit('close');
   }
 </script>
 
 <template>
   <Splash>
-    <section>
+    <section :class="{ closing, hidden }" @animationend="hide">
       <div class="room-details">
         <h1>Enter room</h1>
         <span class="door">🚪</span>
@@ -28,7 +39,20 @@
 </template>
 
 <style scoped>
+  @keyframes zoom {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    100% {
+      transform: scale(40);
+      opacity: 0;
+    }
+  }
+
   section {
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -37,6 +61,16 @@
     height: 100%;
     padding: 2rem;
 
+    &.closing  {
+      animation-name: zoom;
+      animation-duration: 500ms;
+      animation-timing-function: ease-out;
+    }
+
+    &.hidden {
+      display: none;
+    }
+    
     .room-details {
       flex-grow: 1;
 
