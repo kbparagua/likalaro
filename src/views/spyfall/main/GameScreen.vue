@@ -11,6 +11,7 @@
   import RoomGenerator from '@/lib/RoomGenerator';
   import GameDetails from './GameDetails.vue';
   import EnterRoom from './game_screen/EnterRoom.vue';
+  import RoundSplash from './game_screen/RoundSplash.vue';
 
   const router = useRouter();
   const route = useRoute();
@@ -22,7 +23,9 @@
   const seconds = parseInt(route.query.seconds);
   const isHost = index == 0;
   const room = RoomGenerator.generate(seed);
-  const showEnterRoom = ref(!isHost);
+
+  const showEnterRoom = ref(!isHost && round == 1);
+  const showRoundSplash = ref(!showEnterRoom.value);
 
   const spyfall = new SpyFall({ seed, round, numberOfPlayers });
   const location = spyfall.location(index);
@@ -81,6 +84,7 @@
 
   function hideEnterRoom() {
     showEnterRoom.value = false;
+    showRoundSplash.value = true;
   }
 </script>
 
@@ -104,6 +108,7 @@
       </Window>
 
       <EnterRoom v-if="showEnterRoom" :room="room" @close="hideEnterRoom" />
+      <RoundSplash v-if="showRoundSplash" :round="round" />
 
       <Confirm :visible="confirmExitGame" message="Exit the game?" @yes="exitGame" @no="cancelExitGame"/>
     </template>
