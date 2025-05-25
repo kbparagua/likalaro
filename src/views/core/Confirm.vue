@@ -51,7 +51,7 @@
 
     position: absolute;
     left: 0;
-    z-index: 2;
+    z-index: 3;
 
     flex-direction: column;
 
@@ -59,6 +59,8 @@
     width: 100%;
     height: 20dvh;
     padding: 2rem;
+
+    border-top: solid 1px var(--border-default);
 
     &.open {
       display: flex;
