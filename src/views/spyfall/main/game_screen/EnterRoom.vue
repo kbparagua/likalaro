@@ -2,6 +2,10 @@
   import Splash from '@/views/core/Splash.vue';
 
   const props = defineProps({ room: String });
+
+  function enter() {
+    alert('enter');
+  }
 </script>
 
 <template>
@@ -14,7 +18,7 @@
       </div>
 
       <div class="enter">
-        <div class="btn">
+        <div class="btn" @click="enter">
           <i class="fi fi-sr-portal-enter"></i>
         </div>
         <div class="glow"></div>
@@ -41,6 +45,7 @@
       justify-content: center;
       align-items: center;
       width: 100%;
+      gap: 2rem;
     }
 
     .enter {
@@ -70,31 +75,27 @@
 
         animation-name: glow;
         animation-iteration-count: infinite;
-        animation-duration: 3s;
+        animation-duration: 2s;
         animation-timing-function: ease-in-out;
       }
     }
   }
 
   h1 {
-    font-size: 3rem;
-    font-weight: normal;
+    font-size: 2rem;
     margin: 0;
-    margin-bottom: 4rem;
-
     padding: 0;
   }
 
   .door {
-    font-size: 8rem;
+    font-size: 5rem;
     text-align: center;
-    margin-bottom: 1.5rem;
   }
 
   .room {
-    font-size: 2rem;
+    font-size: 1.5rem;
     background-color: var(--bg1);
-    padding: 1rem;
+    padding: 0.75rem;
     width: 100%;
     border-radius: 0.5rem;
     text-align: center;
@@ -104,15 +105,15 @@
 
   @keyframes glow {
     0% {
-      transform: scale(1);
+      transform: scale(0.9);
     } 
 
     50% {
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
     100% {
-      transform: scale(1);
+      transform: scale(0.9);
     }
   }
 </style>
