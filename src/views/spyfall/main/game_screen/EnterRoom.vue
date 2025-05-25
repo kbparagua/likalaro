@@ -5,23 +5,16 @@
   const props = defineProps({ room: String });
   const emit = defineEmits(['close']);
 
-  const closing = ref(false);
-  const hidden = ref(false);
+  const hiding = ref(false);
 
   function enter() {
-    closing.value = true;
-  }
-
-  function hide() {
-    closing.value = false;
-    hidden.value = true;
-    emit('close');
+    hiding.value = true;
   }
 </script>
 
 <template>
-  <Splash>
-    <section :class="{ closing, hidden }" @animationend="hide">
+  <Splash :hiding="hiding" @hide="$emit('close')">
+    <section>
       <div class="room-details">
         <h1>Enter room</h1>
         <span class="door">🚪</span>
@@ -39,18 +32,6 @@
 </template>
 
 <style scoped>
-  @keyframes zoom {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-
-    100% {
-      transform: scale(40);
-      opacity: 0;
-    }
-  }
-
   section {
     overflow: hidden;
     display: flex;
@@ -60,16 +41,6 @@
     width: 100%;
     height: 100%;
     padding: 2rem;
-
-    &.closing  {
-      animation-name: zoom;
-      animation-duration: 500ms;
-      animation-timing-function: ease-out;
-    }
-
-    &.hidden {
-      display: none;
-    }
     
     .room-details {
       flex-grow: 1;
@@ -86,6 +57,7 @@
       position: relative;
       width: 7rem;
       height: 7rem;
+      font-size: 3rem;
 
       .btn {
         position: absolute;
