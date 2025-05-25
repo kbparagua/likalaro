@@ -113,7 +113,7 @@
   }
 
   .timer-icon {
-    font-size: 2rem;
+    font-size: 1.75rem;
     width: 2rem;
   }
 
@@ -121,13 +121,13 @@
     flex-grow: 2;
 
     .time {
-      font-size: 2.5rem;
+      font-size: 1.75rem;
       text-align: left;
     }
   }
 
   .btn {
-    font-size: 3rem;
+    font-size: 2rem;
 
     .start {
       color: var(--highlight0);

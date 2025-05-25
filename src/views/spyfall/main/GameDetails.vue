@@ -27,7 +27,7 @@
   section {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem;
+    gap: 0.5rem;
     width: 100%;
   }
 
@@ -49,7 +49,7 @@
       color: var(--highlight1);
       font-weight: bold;
       text-align: center;
-      font-size: 1.5rem;
+      font-size: 1.25rem;
       flex-grow: 1;
     }
   }
@@ -58,7 +58,7 @@
     display: flex;
     justify-content: space-between;
     align-items: baseline;
-    font-size: 1.25rem;
+    font-size: 1rem;
     color: var(--text-secondary);
 
     .player {

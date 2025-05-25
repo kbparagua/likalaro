@@ -68,7 +68,7 @@
 <style scoped>
   .action {
     color: var(--actions-standard-text);
-    font-size: 3rem;
+    font-size: 2.5rem;
     padding: 1.75rem;
 
     &.disabled {

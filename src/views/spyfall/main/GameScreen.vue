@@ -166,7 +166,7 @@
     }
 
     .location {
-      font-size: 3rem;
+      font-size: 2.5rem;
       text-align: center;
       margin-bottom: 0.5rem;
       color: var(--text-highlight);
