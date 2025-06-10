@@ -43,7 +43,6 @@
       flex-wrap: wrap;
       align-content: flex-end;
       gap: 0.75rem;
-      margin-bottom: 5rem;
     }
   }
 </style>
