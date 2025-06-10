@@ -8,12 +8,19 @@
   });
 
   const isClosing = ref(false);
+  const isAnimating = ref(false);
 
   function close() {
     isClosing.value = true;
   }
 
+  function animationStart() {
+    isAnimating.value = true;
+  }
+
   function animationEnd(e) {
+    isAnimating.value = false;
+
     if (e.animationName == 'slide-out') {
       isClosing.value = false;
       emit('close');
@@ -22,7 +29,12 @@
 </script>
 
 <template>
-  <div class="window" :class="{ open: isOpen, closing: isClosing }" @animationend="animationEnd">
+  <div
+    class="window"
+    :class="{ open: isOpen, closing: isClosing, animating: isAnimating }"
+    @animationend="animationEnd"
+    @animationstart="animationStart">
+
     <div class="content">
       <div class="main">
         <slot></slot>
@@ -61,6 +73,10 @@
 
     &.closing {
       animation: 0.25s ease-in 0s slide-out;
+    }
+
+    &.animating {
+      overflow: hidden;
     }
   }
 

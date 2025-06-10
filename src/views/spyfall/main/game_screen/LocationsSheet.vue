@@ -12,20 +12,38 @@
 
 <template>
   <div class="locations-sheet">
-    <Location v-for="(location) in locations" :name="location.name" />
+    <h1>
+      <i class="fi-ss-marker"></i>
+      Locations
+    </h1>
+
+    <div class="locations">
+      <Location v-for="(location) in locations" :name="location.name" />
+    </div>
   </div>
 </template>
 
 <style scoped>
   .locations-sheet {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+
     width: 100%;
     height: 100%;
 
-    display: flex;
-    flex-wrap: wrap;
-    align-content: flex-end;
-    gap: 0.75rem;
+    h1 {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
 
-    margin-bottom: 5rem;
+    .locations {
+      display: flex;
+      flex-wrap: wrap;
+      align-content: flex-end;
+      gap: 0.75rem;
+      margin-bottom: 5rem;
+    }
   }
 </style>
